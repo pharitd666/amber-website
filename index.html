@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amber Event Production</title>
+  <meta name="description" content="PT Amber Event Production - Event, stage, lighting, audio, and production solutions." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amberGold: '#f2a900',
+            amberLight: '#ffca4a',
+            amberDark: '#b87f00',
+            darkBg: '#060606',
+            darkCard: '#111111',
+            darkBorder: 'rgba(255,255,255,0.08)',
+          },
+          boxShadow: {
+            glow: '0 0 30px rgba(242,169,0,0.45)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #050505;
+      --card: rgba(20,20,20,0.72);
+      --border: rgba(255,255,255,0.08);
+      --amber: #f2a900;
+      --amber-2: #ffca4a;
+      --red-1: #ff4d4d;
+      --red-2: #ff1b1b;
+      --red-3: #ff7f50;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: #050505;
+      color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 18px rgba(242,169,0,0.35);
+    }
+
+    .brand-logo svg {
+      filter: drop-shadow(0 0 18px rgba(255, 75, 75, 0.9));
+    }
+
+    .hero-art {
+      filter: drop-shadow(0 0 24px rgba(255, 64, 64, 0.55));
+    }
+
+    .outline-text {
+      -webkit-text-stroke: 2px rgba(242,169,0,0.95);
+      color: transparent;
+    }
+
+    .brand-word {
+      letter-spacing: 0.04em;
+      font-weight: 900;
+      line-height: 0.82;
+      text-transform: uppercase;
+    }
+
+    .glass {
+      background: rgba(18,18,18,0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .neon-box {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.02);
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <a href="#home" class="flex items-center gap-4" aria-label="Amber Event Production home">
+        <div class="brand-logo">
+          <svg width="110" height="110" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amber Event Production logo">
+            <defs>
+              <linearGradient id="amberGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff6a4d" />
+                <stop offset="30%" stop-color="#ff4a4a" />
+                <stop offset="100%" stop-color="#d11414" />
+              </linearGradient>
+              <linearGradient id="lightGlow" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fff7ef" />
+                <stop offset="100%" stop-color="#dcdcdc" />
+              </linearGradient>
+            </defs>
+            <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#amberGradient)"/>
+            <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" stroke="#ff3b3b" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M76 92L90 64L104 92H76Z" fill="rgba(255,255,255,0.14)"/>
+            <path d="M90 21L57 120H70L90 80L110 120H123L90 21Z" fill="rgba(255,255,255,0.12)"/>
+            <path d="M116 33L125 14L130 32L147 38L130 45L125 64L116 45L99 38L116 33Z" fill="url(#lightGlow)"/>
+            <path d="M125 64L132.5 48L140 64L156 71L140 78L132.5 94L125 78L109 71L125 64Z" fill="url(#lightGlow)" opacity="0.9"/>
+            <path d="M74 46L81.5 30L87 46L103 52L87 58L81.5 74L74 58L58 52L74 46Z" fill="url(#lightGlow)" opacity="0.85"/>
+          </svg>
+        </div>
+        <div>
+          <div class="text-2xl font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
+          <div class="-mt-1 text-[9px] font-bold tracking-[0.28em] text-white/70 uppercase">Event Production</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-8 text-[10px] font-black uppercase tracking-[0.24em] text-white/70 md:flex">
+        <a href="#about" class="transition hover:text-amberGold">About</a>
+        <a href="#services" class="transition hover:text-amberGold">Services</a>
+        <a href="#work" class="transition hover:text-amberGold">Work</a>
+        <a href="#team" class="transition hover:text-amberGold">Team</a>
+        <a href="#contact" class="transition hover:text-amberGold">Contact</a>
+      </nav>
+
+      <button class="hidden rounded-full bg-amberGold px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-glow transition hover:bg-amberLight md:inline-flex">
+        Get in Touch
+      </button>
+    </div>
+  </header>
+
+  <main id="home" class="relative overflow-hidden bg-black text-white">
+    <section class="relative mx-auto max-w-7xl px-4 pb-16 pt-32 sm:px-6 lg:px-8">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,166,0,0.08),transparent_38%)]"></div>
+      <div class="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff3a3a]/10 blur-[110px]"></div>
+
+      <div class="relative grid items-center gap-12 lg:grid-cols-[1.1fr_1.4fr]">
+        <div class="order-2 lg:order-1">
+          <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-amberGold/40 bg-amberGold/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">
+            <span class="h-2 w-2 rounded-full bg-amberGold animate-pulse"></span>
+            Event Production Indonesia
+          </div>
+
+          <h1 class="brand-word text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] leading-[0.85] text-white">
+            <span class="inline-block text-white">Event</span><br />
+            <span class="inline-block text-white/95">Production</span>
+          </h1>
+
+          <p class="mt-6 max-w-xl text-base leading-relaxed text-zinc-300">
+            Kami mengubah ide menjadi pengalaman visual yang hidup — dari panggung, lighting, sound, hingga eksekusi event yang presisi.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#work" class="rounded-full bg-amberGold px-7 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-black transition hover:bg-amberLight">Explore Work</a>
+            <a href="#contact" class="rounded-full border border-white/15 bg-white/5 px-7 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-white transition hover:border-amberGold hover:text-amberGold">Let's Talk</a>
+          </div>
+        </div>
+
+        <div class="order-1 flex justify-center lg:order-2">
+          <div class="hero-art relative w-full max-w-[700px]">
+            <svg viewBox="0 0 820 720" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" aria-label="Amber hero design">
+              <defs>
+                <linearGradient id="heroRed" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#ff7d6b" />
+                  <stop offset="30%" stop-color="#ff3f3f" />
+                  <stop offset="100%" stop-color="#d91d1d" />
+                </linearGradient>
+                <linearGradient id="heroOrange" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#ffca5a" />
+                  <stop offset="100%" stop-color="#ff7f3f" />
+                </linearGradient>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="10" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <g opacity="0.95" filter="url(#softGlow)">
+                <path d="M205 80L388 490H157L205 80Z" fill="url(#heroRed)" opacity="0.95"/>
+                <path d="M388 490L737 490L508 80L388 490Z" fill="url(#heroRed)" opacity="0.98"/>
+                <path d="M389 487L562 492L428 74L389 487Z" fill="url(#heroOrange)" opacity="0.9"/>
+                <path d="M332 542L487 540L420 203L332 542Z" fill="url(#heroRed)" opacity="0.8"/>
+                <path d="M219 160L288 77L386 490H268L219 160Z" fill="rgba(255,255,255,0.18)"/>
+                <path d="M506 212L613 72L667 210L506 212Z" fill="rgba(255,255,255,0.12)"/>
+                <path d="M643 242L711 160L758 252L643 242Z" fill="rgba(255,255,255,0.09)"/>
+              </g>
+
+              <g transform="translate(510 110)" fill="none" stroke="#f4f4f4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M55 0L68 48L120 61L68 74L55 122L42 74L-10 61L42 48L55 0Z"/>
+                <path d="M55 18L61 49L92 55L61 61L55 92L49 61L18 55L49 49L55 18Z" opacity="0.85"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="border-t border-white/10 bg-[#0b0b0b]">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div class="glass rounded-[28px] p-6">
+          <div class="rounded-[22px] border border-white/10 bg-[#0d0d0d] p-4">
+            <div class="flex h-[200px] items-center justify-center rounded-[18px] bg-[radial-gradient(circle_at_center,#ffb5290a,#111_60%)]">
+              <svg viewBox="0 0 800 500" class="w-full max-w-[620px]" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="#f2a900" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
+                  <path d="M190 350L400 90L600 350"/>
+                  <path d="M290 260L400 90L510 260"/>
+                  <path d="M120 350H680"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center">
+          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Who We Are</div>
+          <h2 class="text-3xl font-black uppercase text-white sm:text-5xl">
+            Arsitek <span class="text-amberGold">Pengalaman</span>
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-zinc-300">
+            PT Amber Event Production menghadirkan solusi event dan panggung dari konsep hingga eksekusi. Kami fokus pada kualitas pengalaman, detail teknis, dan performa yang memukau.
+          </p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="neon-box rounded-2xl p-4">
+              <div class="text-sm font-bold text-amberGold">Lighting</div>
+              <p class="mt-2 text-sm text-zinc-300">Design pencahayaan yang menciptakan mood, fokus, dan impact visual.</p>
+            </div>
+            <div class="neon-box rounded-2xl p-4">
+              <div class="text-sm font-bold text-amberGold">Audio</div>
+              <p class="mt-2 text-sm text-zinc-300">Sistem suara presisi untuk audiens dan performer yang optimal.</p>
+            </div>
+            <div class="neon-box rounded-2xl p-4">
+              <div class="text-sm font-bold text-amberGold">Stage</div>
+              <p class="mt-2 text-sm text-zinc-300">Perancangan panggung, rigging, dan layout ruang yang aman dan efektif.</p>
+            </div>
+            <div class="neon-box rounded-2xl p-4">
+              <div class="text-sm font-bold text-amberGold">Creative</div>
+              <p class="mt-2 text-sm text-zinc-300">Solusi kreativitas untuk brand activation, produk, dan live experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Our Expertise</div>
+          <h3 class="mt-3 text-3xl font-black uppercase text-white sm:text-5xl">What We Do</h3>
+        </div>
+        <p class="max-w-xl text-sm leading-relaxed text-zinc-300">Dari konsep hingga final show, kami mendukung seluruh rangkaian eksekusi acara dengan pendekatan teknis dan artistik yang terintegrasi.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <article class="glass rounded-2xl p-6">
+          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">01</div>
+          <h4 class="text-xl font-black uppercase text-white">Corporate Event</h4>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Conference, launching, gala, dan gathering perusahaan dengan pengalaman yang terstruktur dan berkesan.</p>
+        </article>
+        <article class="glass rounded-2xl p-6">
+          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">02</div>
+          <h4 class="text-xl font-black uppercase text-white">Concert & Festival</h4>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Produksi panggung, lighting, audio, dan koordinasi teknis untuk event skala besar.</p>
+        </article>
+        <article class="glass rounded-2xl p-6">
+          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">03</div>
+          <h4 class="text-xl font-black uppercase text-white">Brand Activation</h4>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Integrasi promosi dan interaksi konsumen melalui konsep pengalaman yang relevan dan efektif.</p>
+        </article>
+        <article class="glass rounded-2xl p-6">
+          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">04</div>
+          <h4 class="text-xl font-black uppercase text-white">Exhibition</h4>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Desain booth, visual identitas, serta alur traffic pengunjung untuk komunikasi brand yang kuat.</p>
+        </article>
+        <article class="glass rounded-2xl p-6">
+          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">05</div>
+          <h4 class="text-xl font-black uppercase text-white">Stage Production</h4>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Konstruksi, layout, struktur, LED, serta manajemen produksi panggung profesional.</p>
+        </article>
+        <article class="glass rounded-2xl p-6">
+          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">06</div>
+          <h4 class="text-xl font-black uppercase text-white">Creative Production</h4>
+          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Visual concept, mapping, efek khusus, dan arahan artistik yang membangun ikoniknya momen acara.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="border-y border-white/10 bg-[#0a0a0a]">
+      <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center">
+          <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Selected Projects</div>
+          <h3 class="mt-3 text-3xl font-black uppercase text-white sm:text-5xl">Our Work</h3>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="overflow-hidden rounded-[24px] border border-white/10 bg-[#111]">
+            <div class="h-80 bg-[linear-gradient(135deg,#ffb56b,#ff4d4d,#1e1e1e)]"></div>
+            <div class="p-6">
+              <div class="text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">Corporate Event</div>
+              <h4 class="mt-2 text-2xl font-black uppercase text-white">Corporate Experience</h4>
+            </div>
+          </div>
+          <div class="overflow-hidden rounded-[24px] border border-white/10 bg-[#111]">
+            <div class="h-80 bg-[linear-gradient(135deg,#f5d76c,#e08538,#0f0f0f)]"></div>
+            <div class="p-6">
+              <div class="text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">Live Production</div>
+              <h4 class="mt-2 text-2xl font-black uppercase text-white">Concert & Festival</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">The People</div>
+        <h3 class="mt-3 text-3xl font-black uppercase text-white sm:text-5xl">The Leaders</h3>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="glass rounded-2xl p-5">
+          <div class="mb-4 h-64 rounded-xl bg-[linear-gradient(135deg,#2a2a2a,#121212)]"></div>
+          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Founder</div>
+          <h4 class="mt-2 text-2xl font-black uppercase text-white">Ahmad FS</h4>
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <div class="mb-4 h-64 rounded-xl bg-[linear-gradient(135deg,#343434,#121212)]"></div>
+          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Operations Director</div>
+          <h4 class="mt-2 text-2xl font-black uppercase text-white">Saifudin Soleh</h4>
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <div class="mb-4 h-64 rounded-xl bg-[linear-gradient(135deg,#404040,#121212)]"></div>
+          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Technical Director</div>
+          <h4 class="mt-2 text-2xl font-black uppercase text-white">Reiza J. Putra</h4>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-white/10 bg-[#090909]">
+      <div class="mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 lg:px-8">
+        <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Start a Project</div>
+        <h3 class="mt-4 text-4xl font-black uppercase text-white sm:text-6xl">Let's Build Something Unforgettable.</h3>
+        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-300">Siap mewujudkan konsep acara spektakuler Anda bersama tim PT Amber Event Production. Mari diskusikan kebutuhan produksi dan teknis acara Anda.</p>
+        <div class="mt-8 flex justify-center">
+          <a href="mailto:amber.eventroduction@gmail.com" class="rounded-full bg-amberGold px-8 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-black transition hover:bg-amberLight">Let's Talk</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-black py-10 text-sm text-zinc-400">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <div>
+        <div class="mb-3 flex items-center gap-3">
+          <div class="brand-logo">
+            <svg width="58" height="58" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <linearGradient id="footerGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff6a4d" />
+                <stop offset="30%" stop-color="#ff4a4a" />
+                <stop offset="100%" stop-color="#d11414" />
+              </linearGradient>
+              <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#footerGradient)"/>
+              <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" stroke="#ff3b3b" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M116 33L125 14L130 32L147 38L130 45L125 64L116 45L99 38L116 33Z" fill="#f4f4f4"/>
+            </svg>
+          </div>
+          <div class="text-xl font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
+        </div>
+        <p class="text-xs leading-relaxed text-zinc-400">Professional Event & Staging Production Agency Indonesia.</p>
+      </div>
+
+      <div>
+        <div class="mb-3 text-[10px] font-black uppercase tracking-[0.24em] text-amberGold">Contact</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="mailto:amber.eventroduction@gmail.com" class="hover:text-amberGold">amber.eventroduction@gmail.com</a></li>
+          <li><a href="tel:+628568088959" class="hover:text-amberGold">+62 856 8088 959</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="mb-3 text-[10px] font-black uppercase tracking-[0.24em] text-amberGold">Location</div>
+        <p class="text-xs leading-relaxed">Malang, East Java, Indonesia</p>
+      </div>
+
+      <div>
+        <div class="mb-3 text-[10px] font-black uppercase tracking-[0.24em] text-amberGold">Follow Us</div>
+        <div class="flex gap-3">
+          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs hover:border-amberGold hover:text-amberGold">IG</a>
+          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs hover:border-amberGold hover:text-amberGold">IN</a>
+          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs hover:border-amberGold hover:text-amberGold">YT</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-white/10 pt-6 text-center text-[10px] uppercase tracking-[0.18em] text-zinc-500">© 2026 PT Amber Event Production</div>
+  </footer>
+</body>
+</html>
