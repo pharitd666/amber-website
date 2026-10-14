@@ -34,7 +34,7 @@
             gap: 12px;
         }
 
-        /* single logo image */
+        /* single logo image fixed to 72x72 */
         .logo-icon { width: 72px; height: 72px; object-fit: contain; }
 
         .logo-text {
@@ -550,8 +550,8 @@
             .locations-grid { grid-template-columns: 1fr; }
             .clients-grid { grid-template-columns: repeat(2, 1fr); }
             header { padding: 15px 20px; }
-            .hero { min-height: 60vh; }
-            .logo-icon { width: 56px; height: 56px; }
+            /* keep logo 72x72 on small screens as requested */
+            .logo-icon { width: 72px; height: 72px; }
             .logo-text .brand { font-size: 22px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; }
         }
