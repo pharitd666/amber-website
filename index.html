@@ -21,7 +21,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            /* reduced vertical padding per design guidance */
+            padding: 12px 40px;
             background: #fff;
             position: sticky;
             top: 0;
@@ -34,8 +35,11 @@
             gap: 12px;
         }
 
-        /* single logo image fixed to 72x72 */
-        .logo-icon { width: 72px; height: 72px; object-fit: contain; }
+        /* Logo display rules:
+           - Use height in the 36px - 44px range and keep width:auto to preserve aspect ratio.
+           - Recommended to keep a high-res (2x/3x) source image or SVG for crispness on retina displays.
+        */
+        .logo-icon { height: 40px; width: auto; object-fit: contain; }
 
         .logo-text {
             display: flex;
@@ -549,9 +553,9 @@
             .projects-grid { grid-template-columns: 1fr; }
             .locations-grid { grid-template-columns: 1fr; }
             .clients-grid { grid-template-columns: repeat(2, 1fr); }
-            header { padding: 15px 20px; }
-            /* keep logo 72x72 on small screens as requested */
-            .logo-icon { width: 72px; height: 72px; }
+            header { padding: 12px 20px; }
+            /* keep logo height within requested range on small screens */
+            .logo-icon { height: 36px; }
             .logo-text .brand { font-size: 22px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; }
         }
