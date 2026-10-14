@@ -1,467 +1,879 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amber Event Production</title>
-  <meta name="description" content="PT Amber Event Production - Event, stage, lighting, audio, and production solutions." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            amberGold: '#f2a900',
-            amberLight: '#ffca4a',
-            amberDark: '#b87f00',
-            darkBg: '#060606',
-            darkCard: '#111111',
-            darkBorder: 'rgba(255,255,255,0.08)',
-          },
-          boxShadow: {
-            glow: '0 0 30px rgba(242,169,0,0.45)',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMBER. Event Production</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            overflow-x: hidden;
         }
-      }
-    }
-  </script>
-  <style>
-    :root {
-      --bg: #050505;
-      --card: rgba(20,20,20,0.72);
-      --border: rgba(255,255,255,0.08);
-      --amber: #f2a900;
-      --amber-2: #ffca4a;
-      --red-1: #ff4d4d;
-      --red-2: #ff1b1b;
-      --red-3: #ff7f50;
-    }
 
-    html { scroll-behavior: smooth; }
-    body {
-      background: #050505;
-      color: #f5f5f5;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      overflow-x: hidden;
-    }
+        /* ===== HEADER ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    /* Mobile-first adjustments */
-    header { backdrop-filter: blur(8px); }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .glow-text { text-shadow: 0 0 18px rgba(242,169,0,0.35); }
-    .brand-logo svg { filter: drop-shadow(0 0 18px rgba(255, 75, 75, 0.9)); }
-    .hero-art { filter: drop-shadow(0 0 24px rgba(255, 64, 64, 0.55)); }
-    .outline-text { -webkit-text-stroke: 2px rgba(242,169,0,0.95); color: transparent; }
-    .brand-word { letter-spacing: 0.04em; font-weight: 900; line-height: 0.82; text-transform: uppercase; }
-    .glass { background: rgba(18,18,18,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); }
-    .neon-box { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.08); box-shadow: inset 0 0 18px rgba(255,255,255,0.02); }
+        .logo-icon { width: 50px; height: 50px; }
 
-    /* Mobile-specific UI */
-    .mobile-cta { display: flex; gap: 12px; align-items: center; justify-content: center; }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
 
-    /* Sticky bottom CTA for mobile (visible under md) */
-    .sticky-cta {
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 18px;
-      z-index: 60;
-      transform: translateY(0);
-      border-radius: 999px;
-      padding: 12px 18px;
-      background: linear-gradient(90deg, rgba(242,169,0,1), rgba(255,202,74,0.95));
-      color: #050505;
-      font-weight: 800;
-      box-shadow: 0 8px 30px rgba(242,169,0,0.28);
-      display: none;
-    }
+        .logo-text .brand {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+        }
 
-    /* Mobile menu panel */
-    .mobile-menu-panel {
-      position: fixed; inset: 0; z-index: 70; background: linear-gradient(180deg, rgba(4,4,4,0.95), rgba(4,4,4,0.98)); display: none; padding: 48px 20px; backdrop-filter: blur(8px);
-    }
+        .logo-text .brand .dot { color: #F57C20; }
 
-    .mobile-menu-panel a { display: block; margin: 16px 0; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; }
+        .logo-text .sub {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: #C8960C;
+            text-transform: uppercase;
+        }
 
-    /* Show sticky CTA and mobile menu on small screens */
-    @media (max-width: 767px) {
-      .sticky-cta { display: flex; }
-      .mobile-only { display: block !important; }
-      .desktop-only { display: none !important; }
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
 
-      /* Hero: stack with larger type and smaller artwork */
-      .brand-word { font-size: 2.6rem !important; }
-      .hero-art { max-width: 320px !important; }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: #1a1a1a;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
 
-      header .brand-logo svg { width: 56px; height: 56px; }
-      header { padding: 10px 0; }
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 60px 20px 20px;
+            text-align: center;
+        }
 
-      main { padding-bottom: 90px; }
-    }
+        .hero-illustration { margin-bottom: 40px; }
+        .hero-illustration svg { max-width: 400px; width: 100%; }
 
-    /* Improve touch target sizes */
-    a, button { -webkit-tap-highlight-color: rgba(255,255,255,0.06); }
-  </style>
+        .hero-dot {
+            width: 10px;
+            height: 10px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            margin: 20px auto 0;
+        }
+
+        /* ===== AMBER ROLLING INTRO (UKURAN DIPERKECIL) ===== */
+        .amber-intro {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 58px 20px 42px;
+            background: #ffffff;
+            text-align: center;
+            overflow: hidden;
+        }
+        .amber-intro-label {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: clamp(15px, 2.2vw, 21px);
+            font-weight: 400;
+            color: #171717;
+            margin-bottom: 12px;
+            letter-spacing: -0.4px;
+        }
+        .amber-rolling-window {
+            width: 100%;
+            min-height: 1.35em;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .amber-rolling-text {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(22px, 4.5vw, 42px);
+            line-height: 1.2;
+            font-weight: 400;
+            letter-spacing: -1px;
+            color: #080808;
+            white-space: nowrap;
+            transform: translateY(0);
+            opacity: 1;
+            transition:
+                transform 0.45s cubic-bezier(.22,.61,.36,1),
+                opacity 0.35s ease;
+        }
+        .amber-rolling-text.is-exiting {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .amber-rolling-text.is-entering {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .amber-neon-dot {
+            color: #ff6500;
+            text-shadow:
+                0 0 2px #ff6500,
+                0 0 7px rgba(255,101,0,.65),
+                0 0 15px rgba(255,101,0,.3);
+        }
+        @media (max-width: 480px) {
+            .amber-intro {
+                padding: 44px 12px 32px;
+            }
+            .amber-rolling-text {
+                font-size: clamp(18px, 5.8vw, 26px);
+                letter-spacing: -0.6px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .amber-rolling-text {
+                transition: none;
+            }
+        }
+
+        /* ===== PROJECT CARDS ===== */
+        .projects { padding: 60px 40px; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover { transform: scale(1.02); }
+
+        .project-card.card-dark {
+            background: #0a0a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .project-card.card-dark .card-hearts {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .project-card.card-dark .card-hearts span {
+            display: inline-block;
+            color: #4A90D9;
+            font-size: 14px;
+            margin: 2px;
+        }
+
+        .project-card.card-dark h3 {
+            color: #fff;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-card.card-dark p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        .project-card.card-dark .card-jar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 90px;
+            background: #ddd;
+            border-radius: 10px 10px 20px 20px;
+            border: 3px solid #bbb;
+        }
+
+        .project-card.card-dark .card-jar::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 14px;
+            background: #ccc;
+            border-radius: 4px;
+            border: 3px solid #bbb;
+        }
+
+        .project-card.card-orange {
+            background: linear-gradient(135deg, #F57C20, #FF9A3C);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-orange-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .card-orange-content .bo-logo {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .card-orange-content .bo-logo span {
+            font-size: 20px;
+            vertical-align: super;
+        }
+
+        .flower-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 250px;
+        }
+
+        /* ===== BOOSTER ===== */
+        .booster-section {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .booster-inner { max-width: 800px; margin: 0 auto; }
+
+        .booster-image {
+            width: 100%;
+            max-width: 700px;
+            height: 300px;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border-radius: 8px;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .booster-image::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            left: 30%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .booster-image::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 120px;
+            background: #555;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 4px;
+        }
+
+        .booster-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .booster-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-discover {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 4px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-discover:hover { opacity: 0.7; }
+
+        .booster-divider {
+            width: 100%;
+            max-width: 700px;
+            height: 8px;
+            background: #333;
+            margin: 40px auto;
+            border-radius: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #f5f5f5;
+            padding: 60px 40px 40px;
+        }
+
+        .footer-links { max-width: 1200px; margin: 0 auto; }
+
+        .footer-link-group {
+            padding: 30px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .footer-link-group:last-child { border-bottom: none; }
+
+        .footer-link-label {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-link-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .footer-link-action {
+            font-size: 22px;
+            font-weight: 400;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .footer-link-action:hover { text-decoration: underline; }
+        .footer-link-action.email { font-size: 20px; }
+
+        .footer-list { list-style: none; padding: 0; }
+        .footer-list li { margin-bottom: 10px; }
+
+        .footer-list li a {
+            font-size: 20px;
+            font-weight: 400;
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-list li a:hover {
+            color: #F57C20;
+            text-decoration: underline;
+        }
+
+        .footer-list li a.small-link {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .footer-list li a.small-link:hover { color: #F57C20; }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .client-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .client-logo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .client-logo .client-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* ===== LOCATIONS ===== */
+        .locations {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 40px;
+        }
+
+        .view-maps {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .view-maps:hover { color: #1a1a1a; }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .location-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .location-item p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom a {
+            font-size: 14px;
+            color: #888;
+            text-decoration: underline;
+        }
+
+        .footer-bottom .copyright {
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* ===== VIEW ALL ===== */
+        .view-all {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .view-all a {
+            font-size: 16px;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 2px;
+        }
+
+        .view-all a:hover { opacity: 0.7; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .booster-title { font-size: 32px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .locations-grid { grid-template-columns: 1fr; }
+            .clients-grid { grid-template-columns: repeat(2, 1fr); }
+            header { padding: 15px 20px; }
+            .hero { min-height: 60vh; }
+            .logo-text .brand { font-size: 22px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-illustration { animation: fadeInUp 1s ease-out; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .sparkle { animation: sparkle 2s ease-in-out infinite; }
+        .sparkle:nth-child(2) { animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { animation-delay: 1s; }
+        .sparkle:nth-child(4) { animation-delay: 1.5s; }
+    </style>
 </head>
 <body>
-  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-      <a href="#home" class="flex items-center gap-3" aria-label="Amber Event Production home">
-        <div class="brand-logo">
-          <!-- Kept inline SVG for crispness; will be used as logo on all devices -->
-          <svg width="110" height="110" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amber Event Production logo">
-            <defs>
-              <linearGradient id="amberGradient" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#ff6a4d" />
-                <stop offset="30%" stop-color="#ff4a4a" />
-                <stop offset="100%" stop-color="#d11414" />
-              </linearGradient>
-              <linearGradient id="lightGlow" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#fff7ef" />
-                <stop offset="100%" stop-color="#dcdcdc" />
-              </linearGradient>
-            </defs>
-            <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#amberGradient)"/>
-            <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" stroke="#ff3b3b" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M116 33L125 14L130 32L147 38L130 45L125 64L116 45L99 38L116 33Z" fill="url(#lightGlow)"/>
-          </svg>
-        </div>
-        <div class="desktop-only">
-          <div class="text-2xl font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
-          <div class="-mt-1 text-[9px] font-bold tracking-[0.28em] text-white/70 uppercase">Event Production</div>
-        </div>
-      </a>
 
-      <nav class="hidden items-center gap-6 text-[10px] font-black uppercase tracking-[0.24em] text-white/70 md:flex desktop-only">
-        <a href="#about" class="transition hover:text-amberGold">About</a>
-        <a href="#services" class="transition hover:text-amberGold">Services</a>
-        <a href="#work" class="transition hover:text-amberGold">Work</a>
-        <a href="#team" class="transition hover:text-amberGold">Team</a>
-        <a href="#contact" class="transition hover:text-amberGold">Contact</a>
-      </nav>
-
-      <!-- Mobile actions -->
-      <div class="flex items-center gap-3">
-        <button id="mobileMenuBtn" class="mobile-only inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/6 text-white transition md:hidden" aria-label="Open menu">
-          <svg id="iconBars" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-
-        <a href="mailto:amber.eventroduction@gmail.com" class="desktop-only rounded-full bg-amberGold px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-glow md:inline-flex">Get in Touch</a>
-      </div>
-    </div>
-
-    <!-- Mobile menu panel -->
-    <div id="mobileMenu" class="mobile-menu-panel md:hidden">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="brand-logo">
-            <svg width="58" height="58" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <linearGradient id="footerGradient" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#ff6a4d" />
-                <stop offset="30%" stop-color="#ff4a4a" />
-                <stop offset="100%" stop-color="#d11414" />
-              </linearGradient>
-              <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#footerGradient)"/>
-            </svg>
-          </div>
-          <div class="text-lg font-black tracking-[0.12em]">AMBER<span class="text-amberGold">.</span></div>
-        </div>
-        <button id="mobileCloseBtn" class="h-10 w-10 rounded-full bg-white/6 flex items-center justify-center">✕</button>
-      </div>
-
-      <nav class="mt-8">
-        <a href="#about" class="text-2xl text-white">About</a>
-        <a href="#services" class="text-2xl text-white">Services</a>
-        <a href="#work" class="text-2xl text-white">Work</a>
-        <a href="#team" class="text-2xl text-white">Team</a>
-        <a href="#contact" class="text-2xl text-white">Contact</a>
-      </nav>
-
-      <div class="mt-8">
-        <a href="mailto:amber.eventroduction@gmail.com" class="block w-full rounded-full bg-amberGold py-3 text-center font-black text-black">Start Project</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="home" class="relative overflow-hidden bg-black text-white">
-    <section class="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,166,0,0.08),transparent_38%)]"></div>
-      <div class="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff3a3a]/10 blur-[110px]"></div>
-
-      <div class="relative grid items-center gap-8 lg:grid-cols-[1.1fr_1.4fr]">
-        <!-- On mobile we want punchier headline and stacked layout -->
-        <div class="order-2 lg:order-1">
-          <div class="mb-4 inline-flex items-center gap-3 rounded-full border border-amberGold/40 bg-amberGold/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">
-            <span class="h-2 w-2 rounded-full bg-amberGold animate-pulse"></span>
-            Event Production Indonesia
-          </div>
-
-          <h1 class="brand-word text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] leading-[0.9] text-white">
-            <span class="inline-block">WE LIGHT UP</span><br />
-            <span class="inline-block text-amberGold">THE STAGE.</span>
-          </h1>
-
-          <p class="mt-4 max-w-xl text-sm leading-relaxed text-zinc-300">
-            Kami mengubah ide menjadi pengalaman visual yang hidup — dari panggung, lighting, sound, hingga eksekusi event yang presisi.
-          </p>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#work" class="rounded-full bg-amberGold px-5 py-3 text-[12px] font-black uppercase tracking-[0.18em] text-black transition hover:bg-amberLight">Explore Work</a>
-            <a href="#contact" class="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[12px] font-black uppercase tracking-[0.18em] text-white transition hover:border-amberGold hover:text-amberGold">Let's Talk</a>
-          </div>
-        </div>
-
-        <div class="order-1 flex justify-center lg:order-2">
-          <div class="hero-art relative w-full max-w-[700px] sm:max-w-[540px] md:max-w-[640px]">
-            <!-- Desktop SVG hero kept; on small screens it scales down automatically. For aggressive mobile we hide extra details using media queries and let the shape remain bold. -->
-            <svg viewBox="0 0 820 720" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" aria-label="Amber hero design">
-              <defs>
-                <linearGradient id="heroRed" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ff7d6b" />
-                  <stop offset="30%" stop-color="#ff3f3f" />
-                  <stop offset="100%" stop-color="#d91d1d" />
-                </linearGradient>
-                <linearGradient id="heroOrange" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ffca5a" />
-                  <stop offset="100%" stop-color="#ff7f3f" />
-                </linearGradient>
-                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="10" result="blur"/>
-                  <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
-
-              <g opacity="0.95" filter="url(#softGlow)">
-                <path d="M205 80L388 490H157L205 80Z" fill="url(#heroRed)" opacity="0.95"/>
-                <path d="M388 490L737 490L508 80L388 490Z" fill="url(#heroRed)" opacity="0.98"/>
-                <path d="M389 487L562 492L428 74L389 487Z" fill="url(#heroOrange)" opacity="0.9"/>
-                <path d="M332 542L487 540L420 203L332 542Z" fill="url(#heroRed)" opacity="0.8"/>
-                <path d="M219 160L288 77L386 490H268L219 160Z" fill="rgba(255,255,255,0.18)"/>
-                <path d="M506 212L613 72L667 210L506 212Z" fill="rgba(255,255,255,0.12)"/>
-                <path d="M643 242L711 160L758 252L643 242Z" fill="rgba(255,255,255,0.09)"/>
-              </g>
-
-              <g transform="translate(510 110)" fill="none" stroke="#f4f4f4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M55 0L68 48L120 61L68 74L55 122L42 74L-10 61L42 48L55 0Z"/>
-                <path d="M55 18L61 49L92 55L61 61L55 92L49 61L18 55L49 49L55 18Z" opacity="0.85"/>
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- rest of the page left largely intact, but spacing is tuned for mobile -->
-
-    <section id="about" class="border-t border-white/10 bg-[#0b0b0b]">
-      <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div class="glass rounded-[18px] p-4">
-          <div class="rounded-[14px] border border-white/10 bg-[#0d0d0d] p-3">
-            <div class="flex h-[160px] items-center justify-center rounded-[12px] bg-[radial-gradient(circle_at_center,#ffb5290a,#111_60%)]">
-              <svg viewBox="0 0 800 500" class="w-full max-w-[520px]" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="#f2a900" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
-                  <path d="M190 350L400 90L600 350"/>
-                  <path d="M290 260L400 90L510 260"/>
-                  <path d="M120 350H680"/>
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <svg class="logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="10,110 40,20 55,60" fill="#C0392B"/>
+                <polygon points="40,20 55,60 70,110" fill="#E74C3C"/>
+                <polygon points="55,60 70,110 85,60" fill="#E67E22"/>
+                <polygon points="70,110 85,60 100,110" fill="#F39C12"/>
+                <g transform="translate(60, 25)">
+                    <line x1="0" y1="-12" x2="0" y2="12" stroke="#F5C842" stroke-width="2"/>
+                    <line x1="-12" y1="0" x2="12" y2="0" stroke="#F5C842" stroke-width="2"/>
+                    <line x1="-8" y1="-8" x2="8" y2="8" stroke="#F5C842" stroke-width="1.5"/>
+                    <line x1="8" y1="-8" x2="-8" y2="8" stroke="#F5C842" stroke-width="1.5"/>
                 </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex flex-col justify-center">
-          <div class="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Who We Are</div>
-          <h2 class="text-2xl font-black uppercase text-white sm:text-4xl">Arsitek <span class="text-amberGold">Pengalaman</span></h2>
-          <p class="mt-4 text-sm leading-relaxed text-zinc-300">PT Amber Event Production menghadirkan solusi event dan panggung dari konsep hingga eksekusi. Kami fokus pada kualitas pengalaman, detail teknis, dan performa yang memukau.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services, Work, Team, Contact kept but spacing reduced for mobile -->
-    <section id="services" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Our Expertise</div>
-          <h3 class="mt-3 text-2xl font-black uppercase text-white sm:text-3xl">What We Do</h3>
-        </div>
-        <p class="max-w-xl text-sm leading-relaxed text-zinc-300">Dari konsep hingga final show, kami mendukung seluruh rangkaian eksekusi acara dengan pendekatan teknis dan artistik yang terintegrasi.</p>
-      </div>
-
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <!-- service items -->
-        <article class="glass rounded-2xl p-4">
-          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">01</div>
-          <h4 class="text-lg font-black uppercase text-white">Corporate Event</h4>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-300">Conference, launching, gala, dan gathering perusahaan dengan pengalaman yang terstruktur dan berkesan.</p>
-        </article>
-        <article class="glass rounded-2xl p-4">
-          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">02</div>
-          <h4 class="text-lg font-black uppercase text-white">Concert & Festival</h4>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-300">Produksi panggung, lighting, audio, dan koordinasi teknis untuk event skala besar.</p>
-        </article>
-        <article class="glass rounded-2xl p-4">
-          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">03</div>
-          <h4 class="text-lg font-black uppercase text-white">Brand Activation</h4>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-300">Integrasi promosi dan interaksi konsumen melalui konsep pengalaman yang relevan dan efektif.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="work" class="border-y border-white/10 bg-[#0a0a0a]">
-      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="mb-8 text-center">
-          <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Selected Projects</div>
-          <h3 class="mt-3 text-2xl font-black uppercase text-white sm:text-4xl">Our Work</h3>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-2">
-          <div class="overflow-hidden rounded-[20px] border border-white/10 bg-[#111]">
-            <div class="h-56 bg-[linear-gradient(135deg,#ffb56b,#ff4d4d,#1e1e1e)]"></div>
-            <div class="p-4">
-              <div class="text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">Corporate Event</div>
-              <h4 class="mt-2 text-xl font-black uppercase text-white">Corporate Experience</h4>
-            </div>
-          </div>
-          <div class="overflow-hidden rounded-[20px] border border-white/10 bg-[#111]">
-            <div class="h-56 bg-[linear-gradient(135deg,#f5d76c,#e08538,#0f0f0f)]"></div>
-            <div class="p-4">
-              <div class="text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">Live Production</div>
-              <h4 class="mt-2 text-xl font-black uppercase text-white">Concert & Festival</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="team" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mb-8 text-center">
-        <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">The People</div>
-        <h3 class="mt-3 text-2xl font-black uppercase text-white sm:text-4xl">The Leaders</h3>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-3">
-        <div class="glass rounded-2xl p-4">
-          <div class="mb-4 h-48 rounded-xl bg-[linear-gradient(135deg,#2a2a2a,#121212)]"></div>
-          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Founder</div>
-          <h4 class="mt-2 text-xl font-black uppercase text-white">Ahmad FS</h4>
-        </div>
-        <div class="glass rounded-2xl p-4">
-          <div class="mb-4 h-48 rounded-xl bg-[linear-gradient(135deg,#343434,#121212)]"></div>
-          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Operations Director</div>
-          <h4 class="mt-2 text-xl font-black uppercase text-white">Saifudin Soleh</h4>
-        </div>
-        <div class="glass rounded-2xl p-4">
-          <div class="mb-4 h-48 rounded-xl bg-[linear-gradient(135deg,#404040,#121212)]"></div>
-          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Technical Director</div>
-          <h4 class="mt-2 text-xl font-black uppercase text-white">Reiza J. Putra</h4>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="border-t border-white/10 bg-[#090909]">
-      <div class="mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 lg:px-8">
-        <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Start a Project</div>
-        <h3 class="mt-4 text-2xl font-black uppercase text-white sm:text-4xl">Let's Build Something Unforgettable.</h3>
-        <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-zinc-300">Siap mewujudkan konsep acara spektakuler Anda bersama tim PT Amber Event Production. Mari diskusikan kebutuhan produksi dan teknis acara Anda.</p>
-        <div class="mt-6 flex justify-center">
-          <a href="mailto:amber.eventroduction@gmail.com" class="rounded-full bg-amberGold px-6 py-3 text-[12px] font-black uppercase tracking-[0.24em] text-black transition hover:bg-amberLight">Let's Talk</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Sticky mobile CTA -->
-  <a href="mailto:amber.eventroduction@gmail.com" class="sticky-cta mobile-only">📩 Start Project — Chat with Amber</a>
-
-  <footer class="border-t border-white/10 bg-black py-8 text-sm text-zinc-400">
-    <div class="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-      <div>
-        <div class="mb-3 flex items-center gap-3">
-          <div class="brand-logo">
-            <svg width="58" height="58" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <linearGradient id="footerGradient" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#ff6a4d" />
-                <stop offset="30%" stop-color="#ff4a4a" />
-                <stop offset="100%" stop-color="#d11414" />
-              </linearGradient>
-              <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#footerGradient)"/>
             </svg>
-          </div>
-          <div class="text-lg font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
+            <div class="logo-text">
+                <span class="brand">AMBER<span class="dot">.</span></span>
+                <span class="sub">Event Production</span>
+            </div>
         </div>
-        <p class="text-xs leading-relaxed text-zinc-400">Professional Event & Staging Production Agency Indonesia.</p>
-      </div>
+        <button class="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-      <div>
-        <div class="mb-3 text-[10px] font-black uppercase tracking-[0.24em] text-amberGold">Contact</div>
-        <ul class="space-y-2 text-xs">
-          <li><a href="mailto:amber.eventroduction@gmail.com" class="hover:text-amberGold">amber.eventroduction@gmail.com</a></li>
-          <li><a href="tel:+628568088959" class="hover:text-amberGold">+62 856 8088 959</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="mb-3 text-[10px] font-black uppercase tracking-[0.24em] text-amberGold">Location</div>
-        <p class="text-xs leading-relaxed">Malang, East Java, Indonesia</p>
-      </div>
-
-      <div>
-        <div class="mb-3 text-[10px] font-black uppercase tracking-[0.24em] text-amberGold">Follow Us</div>
-        <div class="flex gap-3">
-          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs hover:border-amberGold hover:text-amberGold">IG</a>
-          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs hover:border-amberGold hover:text-amberGold">IN</a>
-          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs hover:border-amberGold hover:text-amberGold">YT</a>
+    <!-- HERO (dengan Rolling Text) -->
+    <section class="hero">
+        <div class="hero-illustration">
+            <svg viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(120, 30)">
+                    <circle cx="50" cy="20" r="18" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+                    <path d="M32,15 Q35,5 50,5 Q65,5 68,15" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <line x1="50" y1="38" x2="50" y2="120" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="50" y1="55" x2="20" y2="130" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="50" y1="55" x2="80" y2="130" stroke="#1a1a1a" stroke-width="2"/>
+                    <rect x="35" y="110" width="30" height="18" rx="3" fill="#1a1a1a" opacity="0.15" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <line x1="40" y1="128" x2="35" y2="230" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="60" y1="128" x2="65" y2="230" stroke="#1a1a1a" stroke-width="2"/>
+                    <ellipse cx="33" cy="232" rx="10" ry="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <ellipse cx="67" cy="232" rx="10" ry="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <circle cx="42" cy="70" r="2" fill="#1a1a1a"/>
+                    <circle cx="58" cy="70" r="2" fill="#1a1a1a"/>
+                    <line x1="37" y1="175" x2="43" y2="175" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <line x1="57" y1="175" x2="63" y2="175" stroke="#1a1a1a" stroke-width="1.5"/>
+                </g>
+                <g class="sparkle" transform="translate(210, 60)">
+                    <line x1="-6" y1="0" x2="6" y2="0" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <line x1="0" y1="-6" x2="0" y2="6" stroke="#1a1a1a" stroke-width="1.5"/>
+                </g>
+                <g class="sparkle" transform="translate(225, 45)">
+                    <line x1="-4" y1="0" x2="4" y2="0" stroke="#1a1a1a" stroke-width="1"/>
+                    <line x1="0" y1="-4" x2="0" y2="4" stroke="#1a1a1a" stroke-width="1"/>
+                </g>
+                <g class="sparkle" transform="translate(220, 75)">
+                    <line x1="-3" y1="0" x2="3" y2="0" stroke="#1a1a1a" stroke-width="1"/>
+                    <line x1="0" y1="-3" x2="0" y2="3" stroke="#1a1a1a" stroke-width="1"/>
+                </g>
+                <g class="sparkle" transform="translate(235, 55)">
+                    <circle r="2" fill="#1a1a1a"/>
+                </g>
+                <g transform="translate(230, 30)">
+                    <circle cx="50" cy="20" r="18" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+                    <circle cx="68" cy="10" r="8" fill="#1a1a1a" opacity="0.15" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <path d="M35,12 Q40,2 50,2 Q60,2 65,12" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <path d="M35,38 L20,230 L80,230 L65,38 Z" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+                    <path d="M38,38 L50,55 L62,38" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <line x1="27" y1="90" x2="73" y2="90" stroke="#1a1a1a" stroke-width="1"/>
+                    <line x1="24" y1="130" x2="76" y2="130" stroke="#1a1a1a" stroke-width="1"/>
+                    <line x1="22" y1="170" x2="78" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+                    <line x1="21" y1="200" x2="79" y2="200" stroke="#1a1a1a" stroke-width="1"/>
+                    <path d="M35,50 Q10,40 -10,30" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="-10" y1="30" x2="-20" y2="27" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="65" y1="50" x2="80" y2="130" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="40" y1="230" x2="38" y2="270" stroke="#1a1a1a" stroke-width="2"/>
+                    <line x1="60" y1="230" x2="62" y2="270" stroke="#1a1a1a" stroke-width="2"/>
+                    <ellipse cx="36" cy="272" rx="10" ry="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+                    <ellipse cx="64" cy="272" rx="10" ry="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+                </g>
+                <line x1="100" y1="305" x2="190" y2="305" stroke="#1a1a1a" stroke-width="1.5"/>
+                <line x1="220" y1="305" x2="320" y2="305" stroke="#1a1a1a" stroke-width="1.5"/>
+            </svg>
         </div>
-      </div>
-    </div>
-    <div class="mt-6 border-t border-white/10 pt-4 text-center text-[10px] uppercase tracking-[0.18em] text-zinc-500">© 2026 PT Amber Event Production</div>
-  </footer>
 
-  <script>
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        <!-- ROLLING TEXT -->
+        <section class="amber-intro">
+            <div class="amber-intro-label">We make a...</div>
+            <div class="amber-rolling-window" aria-live="off">
+                <div class="amber-rolling-text" id="amberRollingText">
+                    Branding<span class="amber-neon-dot">.</span>
+                </div>
+            </div>
+        </section>
 
-    function openMobileMenu() {
-      mobileMenu.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMobileMenu() {
-      mobileMenu.style.display = 'none';
-      document.body.style.overflow = '';
-    }
+        <div class="hero-dot"></div>
+    </section>
 
-    mobileMenuBtn && mobileMenuBtn.addEventListener('click', openMobileMenu);
-    mobileCloseBtn && mobileCloseBtn.addEventListener('click', closeMobileMenu);
+    <!-- PROJECTS -->
+    <section class="projects">
+        <div class="projects-grid">
+            <div class="project-card card-dark">
+                <div class="card-hearts">
+                    <span>♥</span>
+                    <span style="font-size:10px">♥</span>
+                    <span style="font-size:18px">♥</span>
+                    <span style="font-size:8px">♥</span>
+                </div>
+                <h3>Gemini API</h3>
+                <p>Developer Competition</p>
+                <div class="card-jar"></div>
+            </div>
+            <div class="project-card card-orange">
+                <svg class="flower-decoration" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="200" rx="60" ry="30" fill="#E74C3C" opacity="0.8"/>
+                    <ellipse cx="80" cy="180" rx="40" ry="25" fill="#C0392B" opacity="0.7"/>
+                    <ellipse cx="120" cy="170" rx="35" ry="20" fill="#F39C12" opacity="0.6"/>
+                    <path d="M90,160 Q100,100 110,160" fill="#E67E22" opacity="0.8"/>
+                    <path d="M80,150 Q100,80 120,150" fill="#F57C20" opacity="0.7"/>
+                    <circle cx="100" cy="90" r="20" fill="#4ECDC4" opacity="0.9"/>
+                    <path d="M70,130 Q100,60 130,130" fill="#E74C3C" opacity="0.5"/>
+                    <ellipse cx="100" cy="140" rx="25" ry="40" fill="#FF6B6B" opacity="0.6"/>
+                </svg>
+                <div class="card-orange-content">
+                    <div class="bo-logo">B<span>&</span>O</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Close mobile menu when clicking outside
-    mobileMenu && mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMobileMenu();
-    });
+    <div class="view-all"><a href="#">View all projects</a></div>
 
-    // Improve touch friendly interaction: show/hide sticky CTA based on scroll direction
-    let lastScroll = 0;
-    const sticky = document.querySelector('.sticky-cta');
-    window.addEventListener('scroll', () => {
-      const current = window.pageYOffset || document.documentElement.scrollTop;
-      if (!sticky) return;
-      if (current > lastScroll && current > 120) {
-        // scrolling down -> hide
-        sticky.style.transform = 'translateY(100px)';
-        sticky.style.opacity = '0';
-      } else {
-        // scrolling up -> show
-        sticky.style.transform = 'translateY(0)';
-        sticky.style.opacity = '1';
-      }
-      lastScroll = current <= 0 ? 0 : current;
-    }, { passive: true });
+    <!-- BOOSTER -->
+    <section class="booster-section">
+        <div class="booster-inner">
+            <div class="booster-image"></div>
+            <h2 class="booster-title">A booster rocket for digital product teams</h2>
+            <p class="booster-desc">We collaborate with startups and product departments around the world to invent and reinvent the products of tomorrow.</p>
+            <a href="#" class="btn-discover">Discover more</a>
+            <div class="booster-divider"></div>
+            <p class="booster-desc">We collaborate with startups and product departments around the world to invent and reinvent the products of tomorrow.</p>
+            <a href="#" class="btn-discover">Discover more</a>
+        </div>
+    </section>
 
-  </script>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+
+            <div class="footer-link-group">
+                <p class="footer-link-label">About Us</p>
+                <p class="footer-link-title">Who we are</p>
+                <p style="font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-top:10px;">
+                    AMBER. Event Production is a creative agency specializing in crafting unforgettable digital and live experiences.
+                    We blend strategy, design, and technology to bring bold ideas to life.
+                </p>
+                <div style="margin-top:15px;">
+                    <a href="mailto:hello@amberproduction.com" class="footer-link-action email" style="font-size:16px;">hello@amberproduction.com</a>
+                </div>
+            </div>
+
+            <div class="footer-link-group">
+                <p class="footer-link-label">Selected Works</p>
+                <ul class="footer-list">
+                    <li><a href="#">Gemini API — Developer Competition</a></li>
+                    <li><a href="#">Bang & Olufsen — Brand Experience</a></li>
+                    <li><a href="#">Nike — Digital Launch Campaign</a></li>
+                    <li><a href="#">Spotify — Interactive Event Platform</a></li>
+                    <li><a href="#">View all projects →</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-link-group">
+                <p class="footer-link-label">Services</p>
+                <ul class="footer-list">
+                    <li><a href="#">Event Production</a></li>
+                    <li><a href="#">Digital Experiences</a></li>
+                    <li><a href="#">Brand Strategy</a></li>
+                    <li><a href="#">Creative Direction</a></li>
+                    <li><a href="#">Web & App Development</a></li>
+                    <li><a href="#">Motion & Visual Design</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-link-group">
+                <p class="footer-link-label">Clients</p>
+                <p style="font-size:15px;color:#555;margin-bottom:15px;">Trusted by leading brands worldwide</p>
+                <div class="clients-grid">
+                    <div class="client-logo"><span class="client-dot" style="background:#E74C3C;"></span>Nike</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#1DB954;"></span>Spotify</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#F57C20;"></span>B&O</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#4285F4;"></span>Google</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#000;"></span>Apple</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#E50914;"></span>Netflix</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#0077B5;"></span>LinkedIn</div>
+                    <div class="client-logo"><span class="client-dot" style="background:#FF6900;"></span>SoundCloud</div>
+                </div>
+            </div>
+
+            <div class="footer-link-group">
+                <p class="footer-link-label">Legalities</p>
+                <ul class="footer-list">
+                    <li><a href="#" class="small-link">Global Privacy Statement</a></li>
+                    <li><a href="#" class="small-link">Terms of Service</a></li>
+                    <li><a href="#" class="small-link">Cookie Policy</a></li>
+                    <li><a href="#" class="small-link">GDPR Compliance</a></li>
+                    <li><a href="#" class="small-link">Accessibility Statement</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- LOCATIONS -->
+        <div class="locations">
+            <a href="#" class="view-maps">View on maps</a>
+            <div class="locations-grid" style="grid-template-columns: 1fr; max-width: 400px;">
+                <div class="location-item">
+                    <h4>Indonesia</h4>
+                    <p>Dsn. Krajan - Asrikaton - Pakis<br>Malang, 65154 - East Java<br>Whatsapp: +62 856 8088-959</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="copyright">© 2026 AMBER. Event Production. All rights reserved.</span>
+            <a href="#">Global Privacy Statement</a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.querySelector('.hamburger');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const spans = this.querySelectorAll('span');
+            if (this.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // ===== ROLLING TEXT ANIMATION (DIPERBARUI) =====
+        (function () {
+            const text = document.getElementById("amberRollingText");
+            if (!text || text.dataset.initialized) return;
+            text.dataset.initialized = "true";
+            const words = [
+                "Branding",
+                "Events Organizer",
+                "Events Planner",
+                "Exhibitions",
+                "Meetings Incentives, Conferences"
+            ];
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+            let index = 0;
+            let timer;
+            function showNext() {
+                text.classList.add("is-exiting");
+                setTimeout(function () {
+                    index = (index + 1) % words.length;
+                    text.innerHTML =
+                        words[index] + '<span class="amber-neon-dot">.</span>';
+                    text.classList.remove("is-exiting");
+                    text.classList.add("is-entering");
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            text.classList.remove("is-entering");
+                        });
+                    });
+                }, reducedMotion ? 0 : 400);
+            }
+            if (!reducedMotion) {
+                timer = window.setInterval(showNext, 2000);
+            }
+        })();
+
+        // ===== SCROLL REVEAL =====
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .footer-link-group, .location-item, .client-logo').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
 </body>
 </html>
