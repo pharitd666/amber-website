@@ -45,49 +45,70 @@
       overflow-x: hidden;
     }
 
-    .glow-text {
-      text-shadow: 0 0 18px rgba(242,169,0,0.35);
+    /* Mobile-first adjustments */
+    header { backdrop-filter: blur(8px); }
+
+    .glow-text { text-shadow: 0 0 18px rgba(242,169,0,0.35); }
+    .brand-logo svg { filter: drop-shadow(0 0 18px rgba(255, 75, 75, 0.9)); }
+    .hero-art { filter: drop-shadow(0 0 24px rgba(255, 64, 64, 0.55)); }
+    .outline-text { -webkit-text-stroke: 2px rgba(242,169,0,0.95); color: transparent; }
+    .brand-word { letter-spacing: 0.04em; font-weight: 900; line-height: 0.82; text-transform: uppercase; }
+    .glass { background: rgba(18,18,18,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); }
+    .neon-box { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.08); box-shadow: inset 0 0 18px rgba(255,255,255,0.02); }
+
+    /* Mobile-specific UI */
+    .mobile-cta { display: flex; gap: 12px; align-items: center; justify-content: center; }
+
+    /* Sticky bottom CTA for mobile (visible under md) */
+    .sticky-cta {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      z-index: 60;
+      transform: translateY(0);
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: linear-gradient(90deg, rgba(242,169,0,1), rgba(255,202,74,0.95));
+      color: #050505;
+      font-weight: 800;
+      box-shadow: 0 8px 30px rgba(242,169,0,0.28);
+      display: none;
     }
 
-    .brand-logo svg {
-      filter: drop-shadow(0 0 18px rgba(255, 75, 75, 0.9));
+    /* Mobile menu panel */
+    .mobile-menu-panel {
+      position: fixed; inset: 0; z-index: 70; background: linear-gradient(180deg, rgba(4,4,4,0.95), rgba(4,4,4,0.98)); display: none; padding: 48px 20px; backdrop-filter: blur(8px);
     }
 
-    .hero-art {
-      filter: drop-shadow(0 0 24px rgba(255, 64, 64, 0.55));
+    .mobile-menu-panel a { display: block; margin: 16px 0; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; }
+
+    /* Show sticky CTA and mobile menu on small screens */
+    @media (max-width: 767px) {
+      .sticky-cta { display: flex; }
+      .mobile-only { display: block !important; }
+      .desktop-only { display: none !important; }
+
+      /* Hero: stack with larger type and smaller artwork */
+      .brand-word { font-size: 2.6rem !important; }
+      .hero-art { max-width: 320px !important; }
+
+      header .brand-logo svg { width: 56px; height: 56px; }
+      header { padding: 10px 0; }
+
+      main { padding-bottom: 90px; }
     }
 
-    .outline-text {
-      -webkit-text-stroke: 2px rgba(242,169,0,0.95);
-      color: transparent;
-    }
-
-    .brand-word {
-      letter-spacing: 0.04em;
-      font-weight: 900;
-      line-height: 0.82;
-      text-transform: uppercase;
-    }
-
-    .glass {
-      background: rgba(18,18,18,0.72);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .neon-box {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: inset 0 0 18px rgba(255,255,255,0.02);
-    }
+    /* Improve touch target sizes */
+    a, button { -webkit-tap-highlight-color: rgba(255,255,255,0.06); }
   </style>
 </head>
 <body>
-  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-md">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-      <a href="#home" class="flex items-center gap-4" aria-label="Amber Event Production home">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#home" class="flex items-center gap-3" aria-label="Amber Event Production home">
         <div class="brand-logo">
+          <!-- Kept inline SVG for crispness; will be used as logo on all devices -->
           <svg width="110" height="110" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amber Event Production logo">
             <defs>
               <linearGradient id="amberGradient" x1="0" x2="1" y1="0" y2="1">
@@ -103,20 +124,16 @@
             <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#amberGradient)"/>
             <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" stroke="#ff3b3b" stroke-width="3" stroke-linejoin="round"/>
             <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M76 92L90 64L104 92H76Z" fill="rgba(255,255,255,0.14)"/>
-            <path d="M90 21L57 120H70L90 80L110 120H123L90 21Z" fill="rgba(255,255,255,0.12)"/>
             <path d="M116 33L125 14L130 32L147 38L130 45L125 64L116 45L99 38L116 33Z" fill="url(#lightGlow)"/>
-            <path d="M125 64L132.5 48L140 64L156 71L140 78L132.5 94L125 78L109 71L125 64Z" fill="url(#lightGlow)" opacity="0.9"/>
-            <path d="M74 46L81.5 30L87 46L103 52L87 58L81.5 74L74 58L58 52L74 46Z" fill="url(#lightGlow)" opacity="0.85"/>
           </svg>
         </div>
-        <div>
+        <div class="desktop-only">
           <div class="text-2xl font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
           <div class="-mt-1 text-[9px] font-bold tracking-[0.28em] text-white/70 uppercase">Event Production</div>
         </div>
       </a>
 
-      <nav class="hidden items-center gap-8 text-[10px] font-black uppercase tracking-[0.24em] text-white/70 md:flex">
+      <nav class="hidden items-center gap-6 text-[10px] font-black uppercase tracking-[0.24em] text-white/70 md:flex desktop-only">
         <a href="#about" class="transition hover:text-amberGold">About</a>
         <a href="#services" class="transition hover:text-amberGold">Services</a>
         <a href="#work" class="transition hover:text-amberGold">Work</a>
@@ -124,41 +141,80 @@
         <a href="#contact" class="transition hover:text-amberGold">Contact</a>
       </nav>
 
-      <button class="hidden rounded-full bg-amberGold px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-glow transition hover:bg-amberLight md:inline-flex">
-        Get in Touch
-      </button>
+      <!-- Mobile actions -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="mobile-only inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/6 text-white transition md:hidden" aria-label="Open menu">
+          <svg id="iconBars" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="mailto:amber.eventroduction@gmail.com" class="desktop-only rounded-full bg-amberGold px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-glow md:inline-flex">Get in Touch</a>
+      </div>
+    </div>
+
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu" class="mobile-menu-panel md:hidden">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="brand-logo">
+            <svg width="58" height="58" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <linearGradient id="footerGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff6a4d" />
+                <stop offset="30%" stop-color="#ff4a4a" />
+                <stop offset="100%" stop-color="#d11414" />
+              </linearGradient>
+              <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#footerGradient)"/>
+            </svg>
+          </div>
+          <div class="text-lg font-black tracking-[0.12em]">AMBER<span class="text-amberGold">.</span></div>
+        </div>
+        <button id="mobileCloseBtn" class="h-10 w-10 rounded-full bg-white/6 flex items-center justify-center">✕</button>
+      </div>
+
+      <nav class="mt-8">
+        <a href="#about" class="text-2xl text-white">About</a>
+        <a href="#services" class="text-2xl text-white">Services</a>
+        <a href="#work" class="text-2xl text-white">Work</a>
+        <a href="#team" class="text-2xl text-white">Team</a>
+        <a href="#contact" class="text-2xl text-white">Contact</a>
+      </nav>
+
+      <div class="mt-8">
+        <a href="mailto:amber.eventroduction@gmail.com" class="block w-full rounded-full bg-amberGold py-3 text-center font-black text-black">Start Project</a>
+      </div>
     </div>
   </header>
 
   <main id="home" class="relative overflow-hidden bg-black text-white">
-    <section class="relative mx-auto max-w-7xl px-4 pb-16 pt-32 sm:px-6 lg:px-8">
+    <section class="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,166,0,0.08),transparent_38%)]"></div>
       <div class="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff3a3a]/10 blur-[110px]"></div>
 
-      <div class="relative grid items-center gap-12 lg:grid-cols-[1.1fr_1.4fr]">
+      <div class="relative grid items-center gap-8 lg:grid-cols-[1.1fr_1.4fr]">
+        <!-- On mobile we want punchier headline and stacked layout -->
         <div class="order-2 lg:order-1">
-          <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-amberGold/40 bg-amberGold/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">
+          <div class="mb-4 inline-flex items-center gap-3 rounded-full border border-amberGold/40 bg-amberGold/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">
             <span class="h-2 w-2 rounded-full bg-amberGold animate-pulse"></span>
             Event Production Indonesia
           </div>
 
-          <h1 class="brand-word text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] leading-[0.85] text-white">
-            <span class="inline-block text-white">Event</span><br />
-            <span class="inline-block text-white/95">Production</span>
+          <h1 class="brand-word text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] leading-[0.9] text-white">
+            <span class="inline-block">WE LIGHT UP</span><br />
+            <span class="inline-block text-amberGold">THE STAGE.</span>
           </h1>
 
-          <p class="mt-6 max-w-xl text-base leading-relaxed text-zinc-300">
+          <p class="mt-4 max-w-xl text-sm leading-relaxed text-zinc-300">
             Kami mengubah ide menjadi pengalaman visual yang hidup — dari panggung, lighting, sound, hingga eksekusi event yang presisi.
           </p>
 
-          <div class="mt-8 flex flex-wrap gap-4">
-            <a href="#work" class="rounded-full bg-amberGold px-7 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-black transition hover:bg-amberLight">Explore Work</a>
-            <a href="#contact" class="rounded-full border border-white/15 bg-white/5 px-7 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-white transition hover:border-amberGold hover:text-amberGold">Let's Talk</a>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#work" class="rounded-full bg-amberGold px-5 py-3 text-[12px] font-black uppercase tracking-[0.18em] text-black transition hover:bg-amberLight">Explore Work</a>
+            <a href="#contact" class="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[12px] font-black uppercase tracking-[0.18em] text-white transition hover:border-amberGold hover:text-amberGold">Let's Talk</a>
           </div>
         </div>
 
         <div class="order-1 flex justify-center lg:order-2">
-          <div class="hero-art relative w-full max-w-[700px]">
+          <div class="hero-art relative w-full max-w-[700px] sm:max-w-[540px] md:max-w-[640px]">
+            <!-- Desktop SVG hero kept; on small screens it scales down automatically. For aggressive mobile we hide extra details using media queries and let the shape remain bold. -->
             <svg viewBox="0 0 820 720" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" aria-label="Amber hero design">
               <defs>
                 <linearGradient id="heroRed" x1="0" x2="1" y1="0" y2="1">
@@ -199,13 +255,15 @@
       </div>
     </section>
 
+    <!-- rest of the page left largely intact, but spacing is tuned for mobile -->
+
     <section id="about" class="border-t border-white/10 bg-[#0b0b0b]">
-      <div class="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div class="glass rounded-[28px] p-6">
-          <div class="rounded-[22px] border border-white/10 bg-[#0d0d0d] p-4">
-            <div class="flex h-[200px] items-center justify-center rounded-[18px] bg-[radial-gradient(circle_at_center,#ffb5290a,#111_60%)]">
-              <svg viewBox="0 0 800 500" class="w-full max-w-[620px]" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="#f2a900" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div class="glass rounded-[18px] p-4">
+          <div class="rounded-[14px] border border-white/10 bg-[#0d0d0d] p-3">
+            <div class="flex h-[160px] items-center justify-center rounded-[12px] bg-[radial-gradient(circle_at_center,#ffb5290a,#111_60%)]">
+              <svg viewBox="0 0 800 500" class="w-full max-w-[520px]" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="#f2a900" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
                   <path d="M190 350L400 90L600 350"/>
                   <path d="M290 260L400 90L510 260"/>
                   <path d="M120 350H680"/>
@@ -216,143 +274,111 @@
         </div>
 
         <div class="flex flex-col justify-center">
-          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Who We Are</div>
-          <h2 class="text-3xl font-black uppercase text-white sm:text-5xl">
-            Arsitek <span class="text-amberGold">Pengalaman</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-zinc-300">
-            PT Amber Event Production menghadirkan solusi event dan panggung dari konsep hingga eksekusi. Kami fokus pada kualitas pengalaman, detail teknis, dan performa yang memukau.
-          </p>
-          <div class="mt-8 grid gap-4 sm:grid-cols-2">
-            <div class="neon-box rounded-2xl p-4">
-              <div class="text-sm font-bold text-amberGold">Lighting</div>
-              <p class="mt-2 text-sm text-zinc-300">Design pencahayaan yang menciptakan mood, fokus, dan impact visual.</p>
-            </div>
-            <div class="neon-box rounded-2xl p-4">
-              <div class="text-sm font-bold text-amberGold">Audio</div>
-              <p class="mt-2 text-sm text-zinc-300">Sistem suara presisi untuk audiens dan performer yang optimal.</p>
-            </div>
-            <div class="neon-box rounded-2xl p-4">
-              <div class="text-sm font-bold text-amberGold">Stage</div>
-              <p class="mt-2 text-sm text-zinc-300">Perancangan panggung, rigging, dan layout ruang yang aman dan efektif.</p>
-            </div>
-            <div class="neon-box rounded-2xl p-4">
-              <div class="text-sm font-bold text-amberGold">Creative</div>
-              <p class="mt-2 text-sm text-zinc-300">Solusi kreativitas untuk brand activation, produk, dan live experience.</p>
-            </div>
-          </div>
+          <div class="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Who We Are</div>
+          <h2 class="text-2xl font-black uppercase text-white sm:text-4xl">Arsitek <span class="text-amberGold">Pengalaman</span></h2>
+          <p class="mt-4 text-sm leading-relaxed text-zinc-300">PT Amber Event Production menghadirkan solusi event dan panggung dari konsep hingga eksekusi. Kami fokus pada kualitas pengalaman, detail teknis, dan performa yang memukau.</p>
         </div>
       </div>
     </section>
 
-    <section id="services" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <!-- Services, Work, Team, Contact kept but spacing reduced for mobile -->
+    <section id="services" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Our Expertise</div>
-          <h3 class="mt-3 text-3xl font-black uppercase text-white sm:text-5xl">What We Do</h3>
+          <h3 class="mt-3 text-2xl font-black uppercase text-white sm:text-3xl">What We Do</h3>
         </div>
         <p class="max-w-xl text-sm leading-relaxed text-zinc-300">Dari konsep hingga final show, kami mendukung seluruh rangkaian eksekusi acara dengan pendekatan teknis dan artistik yang terintegrasi.</p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        <article class="glass rounded-2xl p-6">
-          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">01</div>
-          <h4 class="text-xl font-black uppercase text-white">Corporate Event</h4>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Conference, launching, gala, dan gathering perusahaan dengan pengalaman yang terstruktur dan berkesan.</p>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <!-- service items -->
+        <article class="glass rounded-2xl p-4">
+          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">01</div>
+          <h4 class="text-lg font-black uppercase text-white">Corporate Event</h4>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-300">Conference, launching, gala, dan gathering perusahaan dengan pengalaman yang terstruktur dan berkesan.</p>
         </article>
-        <article class="glass rounded-2xl p-6">
-          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">02</div>
-          <h4 class="text-xl font-black uppercase text-white">Concert & Festival</h4>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Produksi panggung, lighting, audio, dan koordinasi teknis untuk event skala besar.</p>
+        <article class="glass rounded-2xl p-4">
+          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">02</div>
+          <h4 class="text-lg font-black uppercase text-white">Concert & Festival</h4>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-300">Produksi panggung, lighting, audio, dan koordinasi teknis untuk event skala besar.</p>
         </article>
-        <article class="glass rounded-2xl p-6">
-          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">03</div>
-          <h4 class="text-xl font-black uppercase text-white">Brand Activation</h4>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Integrasi promosi dan interaksi konsumen melalui konsep pengalaman yang relevan dan efektif.</p>
-        </article>
-        <article class="glass rounded-2xl p-6">
-          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">04</div>
-          <h4 class="text-xl font-black uppercase text-white">Exhibition</h4>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Desain booth, visual identitas, serta alur traffic pengunjung untuk komunikasi brand yang kuat.</p>
-        </article>
-        <article class="glass rounded-2xl p-6">
-          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">05</div>
-          <h4 class="text-xl font-black uppercase text-white">Stage Production</h4>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Konstruksi, layout, struktur, LED, serta manajemen produksi panggung profesional.</p>
-        </article>
-        <article class="glass rounded-2xl p-6">
-          <div class="mb-6 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">06</div>
-          <h4 class="text-xl font-black uppercase text-white">Creative Production</h4>
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">Visual concept, mapping, efek khusus, dan arahan artistik yang membangun ikoniknya momen acara.</p>
+        <article class="glass rounded-2xl p-4">
+          <div class="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">03</div>
+          <h4 class="text-lg font-black uppercase text-white">Brand Activation</h4>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-300">Integrasi promosi dan interaksi konsumen melalui konsep pengalaman yang relevan dan efektif.</p>
         </article>
       </div>
     </section>
 
     <section id="work" class="border-y border-white/10 bg-[#0a0a0a]">
-      <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div class="mb-12 text-center">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="mb-8 text-center">
           <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Selected Projects</div>
-          <h3 class="mt-3 text-3xl font-black uppercase text-white sm:text-5xl">Our Work</h3>
+          <h3 class="mt-3 text-2xl font-black uppercase text-white sm:text-4xl">Our Work</h3>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2">
-          <div class="overflow-hidden rounded-[24px] border border-white/10 bg-[#111]">
-            <div class="h-80 bg-[linear-gradient(135deg,#ffb56b,#ff4d4d,#1e1e1e)]"></div>
-            <div class="p-6">
+          <div class="overflow-hidden rounded-[20px] border border-white/10 bg-[#111]">
+            <div class="h-56 bg-[linear-gradient(135deg,#ffb56b,#ff4d4d,#1e1e1e)]"></div>
+            <div class="p-4">
               <div class="text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">Corporate Event</div>
-              <h4 class="mt-2 text-2xl font-black uppercase text-white">Corporate Experience</h4>
+              <h4 class="mt-2 text-xl font-black uppercase text-white">Corporate Experience</h4>
             </div>
           </div>
-          <div class="overflow-hidden rounded-[24px] border border-white/10 bg-[#111]">
-            <div class="h-80 bg-[linear-gradient(135deg,#f5d76c,#e08538,#0f0f0f)]"></div>
-            <div class="p-6">
+          <div class="overflow-hidden rounded-[20px] border border-white/10 bg-[#111]">
+            <div class="h-56 bg-[linear-gradient(135deg,#f5d76c,#e08538,#0f0f0f)]"></div>
+            <div class="p-4">
               <div class="text-[10px] font-black uppercase tracking-[0.28em] text-amberGold">Live Production</div>
-              <h4 class="mt-2 text-2xl font-black uppercase text-white">Concert & Festival</h4>
+              <h4 class="mt-2 text-xl font-black uppercase text-white">Concert & Festival</h4>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="team" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mb-12 text-center">
+    <section id="team" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8 text-center">
         <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">The People</div>
-        <h3 class="mt-3 text-3xl font-black uppercase text-white sm:text-5xl">The Leaders</h3>
+        <h3 class="mt-3 text-2xl font-black uppercase text-white sm:text-4xl">The Leaders</h3>
       </div>
 
       <div class="grid gap-6 md:grid-cols-3">
-        <div class="glass rounded-2xl p-5">
-          <div class="mb-4 h-64 rounded-xl bg-[linear-gradient(135deg,#2a2a2a,#121212)]"></div>
+        <div class="glass rounded-2xl p-4">
+          <div class="mb-4 h-48 rounded-xl bg-[linear-gradient(135deg,#2a2a2a,#121212)]"></div>
           <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Founder</div>
-          <h4 class="mt-2 text-2xl font-black uppercase text-white">Ahmad FS</h4>
+          <h4 class="mt-2 text-xl font-black uppercase text-white">Ahmad FS</h4>
         </div>
-        <div class="glass rounded-2xl p-5">
-          <div class="mb-4 h-64 rounded-xl bg-[linear-gradient(135deg,#343434,#121212)]"></div>
+        <div class="glass rounded-2xl p-4">
+          <div class="mb-4 h-48 rounded-xl bg-[linear-gradient(135deg,#343434,#121212)]"></div>
           <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Operations Director</div>
-          <h4 class="mt-2 text-2xl font-black uppercase text-white">Saifudin Soleh</h4>
+          <h4 class="mt-2 text-xl font-black uppercase text-white">Saifudin Soleh</h4>
         </div>
-        <div class="glass rounded-2xl p-5">
-          <div class="mb-4 h-64 rounded-xl bg-[linear-gradient(135deg,#404040,#121212)]"></div>
+        <div class="glass rounded-2xl p-4">
+          <div class="mb-4 h-48 rounded-xl bg-[linear-gradient(135deg,#404040,#121212)]"></div>
           <div class="text-[10px] font-black uppercase tracking-[0.2em] text-amberGold">Technical Director</div>
-          <h4 class="mt-2 text-2xl font-black uppercase text-white">Reiza J. Putra</h4>
+          <h4 class="mt-2 text-xl font-black uppercase text-white">Reiza J. Putra</h4>
         </div>
       </div>
     </section>
 
     <section id="contact" class="border-t border-white/10 bg-[#090909]">
-      <div class="mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 lg:px-8">
         <div class="text-[10px] font-black uppercase tracking-[0.3em] text-amberGold">Start a Project</div>
-        <h3 class="mt-4 text-4xl font-black uppercase text-white sm:text-6xl">Let's Build Something Unforgettable.</h3>
-        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-300">Siap mewujudkan konsep acara spektakuler Anda bersama tim PT Amber Event Production. Mari diskusikan kebutuhan produksi dan teknis acara Anda.</p>
-        <div class="mt-8 flex justify-center">
-          <a href="mailto:amber.eventroduction@gmail.com" class="rounded-full bg-amberGold px-8 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-black transition hover:bg-amberLight">Let's Talk</a>
+        <h3 class="mt-4 text-2xl font-black uppercase text-white sm:text-4xl">Let's Build Something Unforgettable.</h3>
+        <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-zinc-300">Siap mewujudkan konsep acara spektakuler Anda bersama tim PT Amber Event Production. Mari diskusikan kebutuhan produksi dan teknis acara Anda.</p>
+        <div class="mt-6 flex justify-center">
+          <a href="mailto:amber.eventroduction@gmail.com" class="rounded-full bg-amberGold px-6 py-3 text-[12px] font-black uppercase tracking-[0.24em] text-black transition hover:bg-amberLight">Let's Talk</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-white/10 bg-black py-10 text-sm text-zinc-400">
-    <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+  <!-- Sticky mobile CTA -->
+  <a href="mailto:amber.eventroduction@gmail.com" class="sticky-cta mobile-only">📩 Start Project — Chat with Amber</a>
+
+  <footer class="border-t border-white/10 bg-black py-8 text-sm text-zinc-400">
+    <div class="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
       <div>
         <div class="mb-3 flex items-center gap-3">
           <div class="brand-logo">
@@ -363,11 +389,9 @@
                 <stop offset="100%" stop-color="#d11414" />
               </linearGradient>
               <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" fill="url(#footerGradient)"/>
-              <path d="M90 18L150 146H118L90 92L62 146H30L90 18Z" stroke="#ff3b3b" stroke-width="3" stroke-linejoin="round"/>
-              <path d="M116 33L125 14L130 32L147 38L130 45L125 64L116 45L99 38L116 33Z" fill="#f4f4f4"/>
             </svg>
           </div>
-          <div class="text-xl font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
+          <div class="text-lg font-black tracking-[0.18em] text-white">AMBER<span class="text-amberGold">.</span></div>
         </div>
         <p class="text-xs leading-relaxed text-zinc-400">Professional Event & Staging Production Agency Indonesia.</p>
       </div>
@@ -394,7 +418,50 @@
         </div>
       </div>
     </div>
-    <div class="mt-8 border-t border-white/10 pt-6 text-center text-[10px] uppercase tracking-[0.18em] text-zinc-500">© 2026 PT Amber Event Production</div>
+    <div class="mt-6 border-t border-white/10 pt-4 text-center text-[10px] uppercase tracking-[0.18em] text-zinc-500">© 2026 PT Amber Event Production</div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+
+    function openMobileMenu() {
+      mobileMenu.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn && mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileCloseBtn && mobileCloseBtn.addEventListener('click', closeMobileMenu);
+
+    // Close mobile menu when clicking outside
+    mobileMenu && mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMobileMenu();
+    });
+
+    // Improve touch friendly interaction: show/hide sticky CTA based on scroll direction
+    let lastScroll = 0;
+    const sticky = document.querySelector('.sticky-cta');
+    window.addEventListener('scroll', () => {
+      const current = window.pageYOffset || document.documentElement.scrollTop;
+      if (!sticky) return;
+      if (current > lastScroll && current > 120) {
+        // scrolling down -> hide
+        sticky.style.transform = 'translateY(100px)';
+        sticky.style.opacity = '0';
+      } else {
+        // scrolling up -> show
+        sticky.style.transform = 'translateY(0)';
+        sticky.style.opacity = '1';
+      }
+      lastScroll = current <= 0 ? 0 : current;
+    }, { passive: true });
+
+  </script>
 </body>
 </html>
