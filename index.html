@@ -36,10 +36,11 @@
         }
 
         /* Logo display rules:
-           - Use height in the 36px - 44px range and keep width:auto to preserve aspect ratio.
+           - Use height in the 34px - 40px range and keep width:auto to preserve aspect ratio.
            - Recommended to keep a high-res (2x/3x) source image or SVG for crispness on retina displays.
         */
-        .logo-icon { height: 40px; width: auto; object-fit: contain; }
+        /* Adjusted to better match the hamburger button height so the logo looks proportional */
+        .logo-icon { height: 36px; width: auto; object-fit: contain; }
 
         .logo-text {
             display: flex;
