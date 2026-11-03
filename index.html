@@ -1,868 +1,958 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMBER. Event Production</title>
+    <title>PT Amber Event Production | Full-Service Event & Staging Production Indonesia</title>
+    <meta name="description" content="PT Amber Event Production - Arsitek Pengalaman & Event Production Agency Indonesia. Concert, Corporate Events, Brand Activation, Exhibition, Staging & Lighting.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amberGold: '#f2a900',
+                        amberLight: '#ffc247',
+                        amberDark: '#b87f00',
+                        darkBg: '#080808',
+                        darkCard: '#121212',
+                        darkBorder: 'rgba(255, 255, 255, 0.1)',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.4, transform: 'scale(1)' },
+                            '50%': { opacity: 0.7, transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Style Overrides -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
-            background: #fff;
+            background-color: #ffffff;
+            color: #f7f7f7;
             overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* ===== HEADER ===== */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 40px;
-            background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f2a900;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        /* Glow & Neon Effects */
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(242, 169, 0, 0.25);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(242, 169, 0, 0.5);
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px #f2a900;
+            color: transparent;
         }
 
-        .logo-icon { 
-            height: 40px; 
-            width: auto; 
-            object-fit: contain; 
+        /* Scroll Reveal Effect */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        .hamburger {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 28px;
-            height: 2.5px;
-            background: #1a1a1a;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-            padding: 60px 20px 20px;
-            text-align: center;
-        }
-
-        .hero-illustration { 
-            margin-bottom: 40px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .hero-illustration img { 
-            max-width: 450px; 
-            width: 100%; 
-            height: auto;
-            object-fit: contain;
-        }
-
-        .hero-dot {
-            width: 10px;
-            height: 10px;
-            background: #1a1a1a;
-            border-radius: 50%;
-            margin: 20px auto 0;
-        }
-
-        /* ===== AMBER ROLLING INTRO ===== */
-        .amber-intro {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 58px 20px 42px;
-            background: #ffffff;
-            text-align: center;
-            overflow: hidden;
-        }
-        .amber-intro-label {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: clamp(15px, 2.2vw, 21px);
-            font-weight: 400;
-            color: #171717;
-            margin-bottom: 12px;
-            letter-spacing: -0.4px;
-        }
-        .amber-rolling-window {
-            width: 100%;
-            min-height: 1.35em;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .amber-rolling-text {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(22px, 4.5vw, 42px);
-            line-height: 1.2;
-            font-weight: 400;
-            letter-spacing: -1px;
-            color: #080808;
-            white-space: nowrap;
-            transform: translateY(0);
+        .reveal.active {
             opacity: 1;
-            transition:
-                transform 0.45s cubic-bezier(.22,.61,.36,1),
-                opacity 0.35s ease;
+            transform: translateY(0);
         }
-        .amber-rolling-text.is-exiting {
-            transform: translateY(-100%);
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Rolling word in the hero headline */
+        .hero-rolling-window {
+            display: inline-flex;
+            height: 1.12em;
+            overflow: hidden;
+            vertical-align: bottom;
+            white-space: nowrap;
+        }
+        .hero-rolling-word {
+            display: inline-block;
+            flex: 0 0 auto;
+            line-height: 1.08;
+            transition: transform 0.45s cubic-bezier(.22, .61, .36, 1), opacity 0.35s ease;
+        }
+        .hero-rolling-word.is-exiting {
+            transform: translateY(-110%);
             opacity: 0;
         }
-        .amber-rolling-text.is-entering {
-            transform: translateY(100%);
+        .hero-rolling-word.is-entering {
+            transform: translateY(110%);
             opacity: 0;
         }
-        .amber-neon-dot {
+        .hero-neon-dot {
             color: #ff6500;
-            text-shadow:
-                0 0 2px #ff6500,
-                0 0 7px rgba(255,101,0,.65),
-                0 0 15px rgba(255,101,0,.3);
+            -webkit-text-stroke: 0;
+            text-shadow: 0 0 7px rgba(255, 101, 0, 0.65), 0 0 15px rgba(255, 101, 0, 0.3);
         }
         @media (max-width: 480px) {
-            .amber-intro {
-                padding: 44px 12px 32px;
-            }
-            .amber-rolling-text {
-                font-size: clamp(18px, 5.8vw, 26px);
-                letter-spacing: -0.6px;
-            }
+            .hero-rolling-window { font-size: 0.82em; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .amber-rolling-text {
-                transition: none;
-            }
+            .hero-rolling-word { transition: none; }
         }
+    
 
-        /* ===== PROJECT CARDS ===== */
-        .projects { padding: 60px 40px; }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* White-site theme: light surfaces; retain Amber's existing gold accents. */
+        body {
+            background-color: #ffffff !important;
+            color: #111111;
         }
-
-        .project-card {
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s;
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.94) !important;
+            border-bottom-color: rgba(0, 0, 0, 0.10) !important;
         }
-
-        .project-card:hover { transform: scale(1.02); }
-
-        .project-card.card-dark {
-            background: #0a0a1a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.92) !important;
+            border-color: rgba(0, 0, 0, 0.10) !important;
         }
-
-        .project-card.card-dark .card-hearts {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .bg-neutral-950,
+        .bg-neutral-900,
+        .bg-darkBg,
+        .bg-black,
+        [class~="bg-neutral-950/80"],
+        [class~="bg-neutral-950/90"],
+        [class~="bg-darkBg/95"] {
+            background-color: #ffffff !important;
+            --tw-bg-opacity: 1 !important;
         }
-
-        .project-card.card-dark .card-hearts span {
-            display: inline-block;
-            color: #4A90D9;
-            font-size: 14px;
-            margin: 2px;
+        #contact {
+            background-color: #ffffff !important;
+            background-image: none !important;
         }
-
-        .project-card.card-dark h3 {
-            color: #fff;
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .text-white { color: #111111 !important; }
+        .text-gray-200 { color: #374151 !important; }
+        .text-gray-300 { color: #4b5563 !important; }
+        .text-gray-400 { color: #4b5563 !important; }
+        .text-gray-500 { color: #6b7280 !important; }
+        .text-amberGold { color: #b87f00 !important; }
+        .company-name { color: #b87f00 !important; font-weight: 800; }
+        .border-white\/5,
+        .border-white\/10,
+        .border-white\/20 {
+            border-color: rgba(0, 0, 0, 0.12) !important;
         }
-
-        .project-card.card-dark p {
-            color: rgba(255,255,255,0.6);
-            font-size: 14px;
-        }
-
-        .project-card.card-dark .card-jar {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 90px;
-            background: #ddd;
-            border-radius: 10px 10px 20px 20px;
-            border: 3px solid #bbb;
-        }
-
-        .project-card.card-dark .card-jar::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 14px;
-            background: #ccc;
-            border-radius: 4px;
-            border: 3px solid #bbb;
-        }
-
-        .project-card.card-orange {
-            background: linear-gradient(135deg, #F57C20, #FF9A3C);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-orange-content {
-            text-align: center;
-            z-index: 2;
-        }
-
-        .card-orange-content .bo-logo {
-            font-size: 48px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 2px;
-        }
-
-        .card-orange-content .bo-logo span {
-            font-size: 20px;
-            vertical-align: super;
-        }
-
-        .flower-decoration {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 250px;
-        }
-
-        /* ===== BOOSTER ===== */
-        .booster-section {
-            background: #1a1a1a;
-            color: #fff;
-            padding: 80px 40px;
-            text-align: center;
-        }
-
-        .booster-inner { max-width: 800px; margin: 0 auto; }
-
-        .booster-image {
-            width: 100%;
-            max-width: 700px;
-            height: 300px;
-            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
-            border-radius: 8px;
-            margin: 0 auto 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .booster-image::before {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: #fff;
-            border-radius: 50%;
-            left: 30%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .booster-image::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 120px;
-            background: #555;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 4px;
-        }
-
-        .booster-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-
-        .booster-desc {
-            font-size: 16px;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-discover {
-            display: inline-block;
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            border-bottom: 1px solid #fff;
-            padding-bottom: 4px;
-            transition: opacity 0.3s;
-        }
-
-        .btn-discover:hover { opacity: 0.7; }
-
-        .booster-divider {
-            width: 100%;
-            max-width: 700px;
-            height: 8px;
-            background: #333;
-            margin: 40px auto;
-            border-radius: 4px;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: #f5f5f5;
-            padding: 60px 40px 40px;
-        }
-
-        .footer-links { max-width: 1200px; margin: 0 auto; }
-
-        .footer-link-group {
-            padding: 30px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .footer-link-group:last-child { border-bottom: none; }
-
-        .footer-link-label {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-link-title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .footer-link-action {
-            font-size: 22px;
-            font-weight: 400;
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-
-        .footer-link-action:hover { text-decoration: underline; }
-        .footer-link-action.email { font-size: 20px; }
-
-        .footer-list { list-style: none; padding: 0; }
-        .footer-list li { margin-bottom: 10px; }
-
-        .footer-list li a {
-            font-size: 20px;
-            font-weight: 400;
-            color: #1a1a1a;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-list li a:hover {
-            color: #F57C20;
-            text-decoration: underline;
-        }
-
-        .footer-list li a.small-link {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .footer-list li a.small-link:hover { color: #F57C20; }
-
-        /* ===== CLIENTS GRID ===== */
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .client-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            background: #fff;
-            border-radius: 8px;
-            height: 90px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .client-logo:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-        }
-
-        .client-logo img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        /* ===== LOCATIONS ===== */
-        .locations {
-            max-width: 1200px;
-            margin: 40px auto 0;
-            padding-top: 40px;
-        }
-
-        .view-maps {
-            display: inline-block;
-            margin-bottom: 30px;
-            font-size: 14px;
-            color: #888;
-            text-decoration: none;
-        }
-
-        .view-maps:hover { color: #1a1a1a; }
-
-        .locations-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .location-item h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-
-        .location-item p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 40px auto 0;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .footer-bottom a {
-            font-size: 14px;
-            color: #888;
-            text-decoration: underline;
-        }
-
-        .footer-bottom .copyright {
-            font-size: 13px;
-            color: #aaa;
-        }
-
-        /* ===== VIEW ALL ===== */
-        .view-all {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .view-all a {
-            font-size: 16px;
-            color: #1a1a1a;
-            text-decoration: none;
-            border-bottom: 1px solid #1a1a1a;
-            padding-bottom: 2px;
-        }
-
-        .view-all a:hover { opacity: 0.7; }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .clients-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .booster-title { font-size: 32px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .locations-grid { grid-template-columns: 1fr; }
-            .clients-grid { grid-template-columns: repeat(2, 1fr); }
-            header { padding: 12px 20px; }
-            .logo-icon { height: 32px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; }
-        }
-
-        @media (max-width: 480px) {
-            .clients-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-illustration { animation: fadeInUp 1s ease-out; }
-
-        /* ===== WHATSAPP BUTTON ===== */
-        .button2 {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 18px 12px 16px;
-            border: none;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #20bd5f, #1aa75d);
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            text-decoration: none;
-            box-shadow: 0 12px 28px rgba(37, 211, 102, 0.35);
-            cursor: pointer;
-            z-index: 200;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-        }
-
-        .button2:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 34px rgba(37, 211, 102, 0.45);
-            filter: brightness(1.03);
-        }
-
-        .button2:focus-visible {
-            outline: 2px solid rgba(0,0,0,0.18);
-            outline-offset: 2px;
-        }
-
-        .button2 svg {
-            width: 22px;
-            height: 22px;
-            display: block;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .button2 {
-                right: 12px;
-                bottom: 12px;
-                padding: 10px 14px 10px 12px;
-                font-size: 14px;
-            }
-            .button2 svg {
-                width: 20px;
-                height: 20px;
-            }
+        ::-webkit-scrollbar-track { background: #ffffff; }
+    
+        .work-gallery .work-main { aspect-ratio: 16 / 10; }
+        .work-gallery img:not(.work-main) { aspect-ratio: 4 / 3; }
+        @media (max-width: 639px) {
+            .work-gallery img:not(.work-main) { aspect-ratio: 1 / 1; }
+            .work-copy h3 { overflow-wrap: anywhere; }
         }
     </style>
 </head>
-<body>
+<body class="selection:bg-amberGold selection:text-black">
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo-container">
-            <img class="logo-icon" src="https://kommodo.ai/i/uxSZGdhJDGogFli9HAvj" alt="AMBER logo">
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center group" aria-label="Amber Event Production">
+                <img src="assets/amber-logo.png" alt="Amber Event Production" class="w-[155px] sm:w-[190px] h-auto">
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest text-gray-300 uppercase">
+                <a href="#about" class="hover:text-amberGold transition-colors py-1">About</a>
+                <a href="#services" class="hover:text-amberGold transition-colors py-1">Services</a>
+                <a href="#work" class="hover:text-amberGold transition-colors py-1">Our Client</a>
+                <a href="#leaders" class="hover:text-amberGold transition-colors py-1">Team</a>
+                <a href="#works" class="hover:text-amberGold transition-colors py-1">Our Works</a>
+                <a href="#contact" class="hover:text-amberGold transition-colors py-1">Contact</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:block">
+                <button onclick="openModal()" class="relative inline-flex items-center justify-center px-6 py-2.5 text-xs font-extrabold tracking-widest uppercase transition-all duration-300 rounded-full bg-amberGold text-black hover:bg-white hover:shadow-[0_0_20px_rgba(242,169,0,0.4)] active:scale-95">
+                    <span>Get In Touch</span>
+                    <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white text-2xl p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
         </div>
-        <button class="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="hidden md:hidden bg-darkBg/95 border-b border-darkBorder px-6 py-6 space-y-4 text-center">
+            <a href="#about" class="mobile-nav-link block text-sm font-extrabold tracking-widest text-gray-200 uppercase hover:text-amberGold py-2">About</a>
+            <a href="#services" class="mobile-nav-link block text-sm font-extrabold tracking-widest text-gray-200 uppercase hover:text-amberGold py-2">Services</a>
+            <a href="#work" class="mobile-nav-link block text-sm font-extrabold tracking-widest text-gray-200 uppercase hover:text-amberGold py-2">Our Client</a>
+            <a href="#leaders" class="mobile-nav-link block text-sm font-extrabold tracking-widest text-gray-200 uppercase hover:text-amberGold py-2">Team</a>
+            <a href="#works" class="mobile-nav-link block text-sm font-extrabold tracking-widest text-gray-200 uppercase hover:text-amberGold py-2">Our Works</a>
+            <a href="#contact" class="mobile-nav-link block text-sm font-extrabold tracking-widest text-gray-200 uppercase hover:text-amberGold py-2">Contact</a>
+            <button onclick="openModal(); closeMobileMenu();" class="w-full mt-2 px-6 py-3 text-xs font-extrabold tracking-widest uppercase rounded-full bg-amberGold text-black">
+                Get In Touch
+            </button>
+        </div>
     </header>
 
-    <!-- HERO (dengan Rolling Text) -->
-    <section class="hero">
-        <div class="hero-illustration">
-            <img src="https://kommodo.ai/i/JmdfDKw2S4RJX18BPPWo" alt="Hero Illustration">
-        </div>
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        
+        <!-- Ambient Glowing Lights -->
+        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-amberGold/15 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-amberGold/10 rounded-full blur-[140px] pointer-events-none"></div>
 
-        <!-- ROLLING TEXT -->
-        <section class="amber-intro">
-            <div class="amber-intro-label">We make a...</div>
-            <div class="amber-rolling-window" aria-live="off">
-                <div class="amber-rolling-text" id="amberRollingText">
-                    Branding<span class="amber-neon-dot">.</span>
+        <!-- Grid Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                
+                <!-- Badge Kicker -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-amberGold/30 text-amberGold text-xs font-extrabold tracking-[0.25em] uppercase reveal">
+                    <span class="w-2 h-2 rounded-full bg-amberGold animate-ping"></span>
+                    EVENT PRODUCTION • INDONESIA
                 </div>
-            </div>
-        </section>
 
-        <div class="hero-dot"></div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="projects">
-        <div class="projects-grid">
-            <div class="project-card card-dark">
-                <div class="card-hearts">
-                    <span>♥</span>
-                    <span style="font-size:10px">♥</span>
-                    <span style="font-size:18px">♥</span>
-                    <span style="font-size:8px">♥</span>
+                <!-- Amber logo above the rolling hero headline -->
+                <div class="flex justify-center reveal">
+                    <img src="assets/amber-logo.png" alt="Amber Event Production" class="w-[220px] sm:w-[280px] h-auto">
                 </div>
-                <h3>Gemini API</h3>
-                <p>Developer Competition</p>
-                <div class="card-jar"></div>
-            </div>
-            <div class="project-card card-orange">
-                <svg class="flower-decoration" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
-                    <ellipse cx="100" cy="200" rx="60" ry="30" fill="#E74C3C" opacity="0.8"/>
-                    <ellipse cx="80" cy="180" rx="40" ry="25" fill="#C0392B" opacity="0.7"/>
-                    <ellipse cx="120" cy="170" rx="35" ry="20" fill="#F39C12" opacity="0.6"/>
-                    <path d="M90,160 Q100,100 110,160" fill="#E67E22" opacity="0.8"/>
-                    <path d="M80,150 Q100,80 120,150" fill="#F57C20" opacity="0.7"/>
-                    <circle cx="100" cy="90" r="20" fill="#4ECDC4" opacity="0.9"/>
-                    <path d="M70,130 Q100,60 130,130" fill="#E74C3C" opacity="0.5"/>
-                    <ellipse cx="100" cy="140" rx="25" ry="40" fill="#FF6B6B" opacity="0.6"/>
-                </svg>
-                <div class="card-orange-content">
-                    <div class="bo-logo">B<span>&</span>O</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <div class="view-all"><a href="#">View all projects</a></div>
+                <!-- Main Headline -->
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] text-white reveal">
+                    WE LIGHT UP <br>
+                    <span class="hero-rolling-window" id="heroRollingWindow" aria-label="THE STAGE" aria-live="off">
+                        <span class="hero-rolling-word text-stroke glow-text" id="heroRollingWord">THE STAGE</span><span class="hero-neon-dot">.</span>
+                    </span>
+                </h1>
 
-    <!-- BOOSTER -->
-    <section class="booster-section">
-        <div class="booster-inner">
-            <div class="booster-image"></div>
-            <h2 class="booster-title">A booster rocket for digital product teams</h2>
-            <p class="booster-desc">We collaborate with startups and product departments around the world to invent and reinvent the products of tomorrow.</p>
-            <a href="#" class="btn-discover">Discover more</a>
-            <div class="booster-divider"></div>
-            <p class="booster-desc">We collaborate with startups and product departments around the world to invent and reinvent the products of tomorrow.</p>
-            <a href="#" class="btn-discover">Discover more</a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-links">
-
-            <div class="footer-link-group">
-                <p class="footer-link-label">About Us</p>
-                <p class="footer-link-title">Who we are</p>
-                <p style="font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-top:10px;">
-                    AMBER. Event Production is a creative agency specializing in crafting unforgettable digital and live experiences.
-                    We blend strategy, design, and technology to bring bold ideas to life.
+                <!-- Subtitle / Paragraph -->
+                <p class="text-gray-400 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto font-normal leading-relaxed reveal">
+                    Kami mengubah ide menjadi pengalaman audio-visual yang hidup. Dari megahnya panggung, tata cahaya, tata suara presisi, hingga detail eksekusi di lapangan.
                 </p>
-                <div style="margin-top:15px;">
-                    <a href="mailto:hello@amberproduction.com" class="footer-link-action email" style="font-size:16px;">hello@amberproduction.com</a>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 reveal">
+                    <a href="#work" class="w-full sm:w-auto px-8 py-4 bg-amberGold hover:bg-amberLight text-black font-extrabold text-xs tracking-widest uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1 shadow-[0_10px_25px_rgba(242,169,0,0.3)]">
+                        Explore Our Clients <i class="fa-solid fa-arrow-trend-up ml-2"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 glass-panel border border-white/20 hover:border-amberGold text-white hover:text-amberGold font-extrabold text-xs tracking-widest uppercase rounded-full transition-all duration-300 transform hover:-translate-y-1">
+                        Let's Talk <i class="fa-solid fa-comments ml-2"></i>
+                    </a>
                 </div>
-            </div>
 
-            <div class="footer-link-group">
-                <p class="footer-link-label">Selected Works</p>
-                <ul class="footer-list">
-                    <li><a href="#">Gemini API — Developer Competition</a></li>
-                    <li><a href="#">Bang & Olufsen — Brand Experience</a></li>
-                    <li><a href="#">Schneider Electric — Digital Launch Campaign</a></li>
-                    <li><a href="#">My Republik — Interactive Event Platform</a></li>
-                    <li><a href="#">View all projects →</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-link-group">
-                <p class="footer-link-label">Services</p>
-                <ul class="footer-list">
-                    <li><a href="#">Event Production</a></li>
-                    <li><a href="#">Digital Experiences</a></li>
-                    <li><a href="#">Brand Strategy</a></li>
-                    <li><a href="#">Creative Direction</a></li>
-                    <li><a href="#">Web & App Development</a></li>
-                    <li><a href="#">Motion & Visual Design</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-link-group">
-                <p class="footer-link-label">Clients</p>
-                <p style="font-size:15px;color:#555;margin-bottom:15px;">Trusted by leading brands worldwide</p>
-                <div class="clients-grid">
-                    <div class="client-logo"><img src="https://kommodo.ai/i/rtfK1hZN61fqZiU95aVU" alt="Schneider Electric"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/EhL8uwgRk83b2BHHOh5u" alt="My Republik"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/TYladka4cuyERzTyzN6B" alt="Sampoerna"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/mJDSlPNOK61rY36zIuQ0" alt="Santan Sasa"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/9pdDxrUQHqUaaWb0KCDd" alt="Ella Skincare"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/Hc8Uhsc27iZPxuVZc2ru" alt="Motul"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/IrcEJbq7JdTbwSbuI64U" alt="PT KAI"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/3YahVWlka3ltgz3G12Mq" alt="Mandiri"></div>
-                    <div class="client-logo"><img src="https://kommodo.ai/i/w9BbNJfFPM6O0sOpZDJr" alt="Kahf"></div>
-                </div>
-            </div>
-
-            <div class="footer-link-group">
-                <p class="footer-link-label">Legalities</p>
-                <ul class="footer-list">
-                    <li><a href="#" class="small-link">Global Privacy Statement</a></li>
-                    <li><a href="#" class="small-link">Terms of Service</a></li>
-                    <li><a href="#" class="small-link">Cookie Policy</a></li>
-                    <li><a href="#" class="small-link">GDPR Compliance</a></li>
-                    <li><a href="#" class="small-link">Accessibility Statement</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- LOCATIONS -->
-        <div class="locations">
-            <a href="#" class="view-maps">View on maps</a>
-            <div class="locations-grid" style="grid-template-columns: 1fr; max-width: 400px;">
-                <div class="location-item">
-                    <h4>Indonesia</h4>
-                    <p>Dsn. Krajan - Asrikaton - Pakis<br>Malang, 65154 - East Java<br>Whatsapp: +62 856 8088-959</p>
-                </div>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <span class="copyright">© 2026 AMBER. Event Production. All rights reserved.</span>
-            <a href="#">Global Privacy Statement</a>
+        <!-- Scroll Indicator -->
+        <a href="#about" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-500 hover:text-amberGold transition-colors text-xs font-bold tracking-widest uppercase flex flex-col items-center gap-2">
+            <span>Scroll</span>
+            <i class="fa-solid fa-chevron-down animate-bounce text-amberGold"></i>
+        </a>
+    </section>
+
+    <div class="border-y border-darkBorder bg-neutral-950 py-5 overflow-hidden">
+        <div class="flex w-[200%] animate-marquee whitespace-nowrap text-xs font-extrabold tracking-[0.3em] uppercase text-gray-400 select-none">
+            <div class="flex items-center space-x-8 px-4">
+                <span>CORPORATE EVENTS</span><span class="text-amberGold">✦</span>
+                <span>CONCERT & FESTIVAL</span><span class="text-amberGold">✦</span>
+                <span>BRAND ACTIVATION</span><span class="text-amberGold">✦</span>
+                <span>EXHIBITION</span><span class="text-amberGold">✦</span>
+                <span>STAGE PRODUCTION</span><span class="text-amberGold">✦</span>
+                <span>LIGHTING</span><span class="text-amberGold">✦</span>
+                <span>SOUND SYSTEM</span><span class="text-amberGold">✦</span>
+            </div>
+            <div class="flex items-center space-x-8 px-4">
+                <span>CORPORATE EVENTS</span><span class="text-amberGold">✦</span>
+                <span>CONCERT & FESTIVAL</span><span class="text-amberGold">✦</span>
+                <span>BRAND ACTIVATION</span><span class="text-amberGold">✦</span>
+                <span>EXHIBITION</span><span class="text-amberGold">✦</span>
+                <span>STAGE PRODUCTION</span><span class="text-amberGold">✦</span>
+                <span>LIGHTING</span><span class="text-amberGold">✦</span>
+                <span>SOUND SYSTEM</span><span class="text-amberGold">✦</span>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative reveal">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 glass-panel group">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop"
+                             alt="Amber Event Production stage"
+                             class="w-full h-[450px] object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/30 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="text-amberGold text-xs font-extrabold tracking-widest uppercase">Stage & Technical Excellence</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">Transforming Spaces Into Iconic Moments</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-5 reveal">
+                    <div class="text-amberGold text-xs font-extrabold tracking-[0.25em] uppercase">WHO WE ARE</div>
+                    <h2 class="text-3xl sm:text-5xl font-black leading-tight text-white">PROFIL PERUSAHAAN &amp; VISI MISI</h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        <span class="company-name">PT AMBER EVENT PRODUCTION</span> didirikan pada pertengahan tahun 2026 di kota Malang, Indonesia, yang dinamis. Nama perusahaan kami, “Amber Event Production”, mencerminkan semangat kami untuk menghadapi berbagai tantangan dalam dunia bisnis masa kini. Dengan menyusun konsep, linimasa, visual, serta fleksibilitas anggaran yang matang dan disesuaikan dengan kebutuhan klien, kami menghadirkan solusi bagi setiap kegiatan melalui eksekusi yang maksimal.
+                    </p>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        <span class="company-name">PT AMBER EVENT PRODUCTION</span> berlandaskan keyakinan bahwa sebuah acara tidak hanya harus berkesan, tetapi juga memberikan dampak positif bagi dunia. Kami memiliki spesialisasi dalam merancang pengalaman yang membekas di hati dan benak klien, seraya terus melampaui batasan-batasan dalam perencanaan acara konvensional.
+                    </p>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Di Amber Event, keberlanjutan menjadi inti dari segala hal yang kami lakukan. Kami bangga menjadi lebih dari sekadar penyelenggara acara; kami adalah pelopor dalam merancang acara dengan pendekatan yang sadar lingkungan.
+                    </p>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Mulai dari acara resmi pemerintahan hingga beragam kegiatan korporat, kami memadukan kreativitas dan ketelitian dalam setiap proyek. Tim kami siap menghadapi tantangan, memastikan setiap acara melampaui ekspektasi sembari tetap berkomitmen pada praktik yang ramah lingkungan. Jadikan Kita Mau Maju sebagai mitra acara Anda, dan rasakan perpaduan sempurna antara inovasi, kreativitas, dan keberlanjutan yang membedakan kami dalam dunia manajemen acara yang terus berkembang.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-neutral-950/80 border-y border-darkBorder relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <span class="text-amberGold text-xs font-extrabold tracking-[0.25em] uppercase">OUR EXPERTISE</span>
+                    <h2 class="text-4xl sm:text-6xl font-black text-white mt-2">WHAT WE DO.</h2>
+                </div>
+                <p class="text-gray-400 max-w-md text-sm leading-relaxed">Empat pilar layanan yang menyatukan perencanaan, kreativitas, sumber daya, dan pengalaman.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="flex items-center gap-4 mb-5">
+                        <span class="text-amberGold font-extrabold text-sm tracking-widest">01</span>
+                        <div class="w-12 h-12 rounded-full bg-amberGold/10 flex items-center justify-center text-amberGold"><i class="fa-solid fa-calendar-check text-lg"></i></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">EVENT ORGANIZER &amp; PLANNER</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-3">Di Amber Event, kami menguasai seni perencanaan dan penyelenggaraan acara. Baik itu acara perusahaan, peluncuran produk, maupun perayaan pribadi, tim kami berdedikasi untuk mewujudkan visi Anda menjadi kenyataan yang berjalan mulus dan tak terlupakan. Mulai dari tahap konsep hingga pelaksanaan, kami menangani setiap detail dengan presisi, kreativitas, dan komitmen terhadap keunggulan.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">Acara yang kami selenggarakan melampaui ekspektasi, serta meninggalkan kesan mendalam bagi penyelenggara maupun para tamu.</p>
+                </article>
+
+                <article class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="flex items-center gap-4 mb-5">
+                        <span class="text-amberGold font-extrabold text-sm tracking-widest">02</span>
+                        <div class="w-12 h-12 rounded-full bg-amberGold/10 flex items-center justify-center text-amberGold"><i class="fa-solid fa-bullhorn text-lg"></i></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">ADVERTISING, BRANDING &amp; MERCHANDISE PRODUCTION</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-3">Tingkatkan kehadiran merek Anda dengan solusi layanan produksi merchandise kami. Mulai dari tahap konseptualisasi hingga pengiriman, kami bekerja sama secara erat dengan klien untuk menciptakan merchandise khusus yang selaras dengan identitas dan tujuan merek mereka. Baik berupa pakaian berlogo, produk promosi, maupun merchandise khusus acara, kami menghadirkan kreativitas dan kualitas dalam setiap produk.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-3">Fokus kami pada praktik produksi yang berkelanjutan memastikan bahwa merchandise Anda tidak hanya merepresentasikan merek secara efektif, tetapi juga mencerminkan komitmen Anda terhadap tanggung jawab lingkungan. Pilihlah Amber Event untuk rangkaian layanan komprehensif yang mengubah acara menjadi pengalaman tak terlupakan dan merchandise menjadi pernyataan merek yang kuat.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="font-bold text-gray-200">Layanan:</span> strategi merek, desain kreatif, pemasaran visual, media buying, dan produksi material promosi.</p>
+                </article>
+
+                <article class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="flex items-center gap-4 mb-5">
+                        <span class="text-amberGold font-extrabold text-sm tracking-widest">03</span>
+                        <div class="w-12 h-12 rounded-full bg-amberGold/10 flex items-center justify-center text-amberGold"><i class="fa-solid fa-people-group text-lg"></i></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">SOLUSI KETENAGAKERJAAN</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Kami mendukung kebutuhan sumber daya manusia melalui layanan rekrutmen, outsourcing, pelatihan SDM, dan konsultasi HR yang disesuaikan dengan kebutuhan organisasi Anda.</p>
+                </article>
+
+                <article class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="flex items-center gap-4 mb-5">
+                        <span class="text-amberGold font-extrabold text-sm tracking-widest">04</span>
+                        <div class="w-12 h-12 rounded-full bg-amberGold/10 flex items-center justify-center text-amberGold"><i class="fa-solid fa-masks-theater text-lg"></i></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">KESENIAN, HIBURAN &amp; REKREASI</h3>
+                    <h4 class="text-amberGold text-xs font-extrabold tracking-widest uppercase mb-2">Kesenian &amp; Hiburan</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-5">Manajemen artis/talent, produksi acara (event organizer), pameran seni, dan pertunjukan.</p>
+                    <h4 class="text-amberGold text-xs font-extrabold tracking-widest uppercase mb-2">Rekreasi &amp; Pengalaman</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Manajemen fasilitas rekreasi, paket team building, dan wisata edukasi.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-b border-darkBorder bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+                
+                <div class="pt-6 lg:pt-0 lg:px-6 text-center lg:text-left reveal">
+                    <div class="text-5xl sm:text-6xl font-black text-amberGold tracking-tight">
+                        <span class="counter" data-target="100">0</span>+
+                    </div>
+                    <p class="text-xs font-extrabold tracking-[0.2em] uppercase text-gray-400 mt-2">Projects Delivered</p>
+                </div>
+
+                <div class="pt-6 lg:pt-0 lg:px-6 text-center lg:text-left reveal">
+                    <div class="text-5xl sm:text-6xl font-black text-amberGold tracking-tight">
+                        <span class="counter" data-target="50">0</span>+
+                    </div>
+                    <p class="text-xs font-extrabold tracking-[0.2em] uppercase text-gray-400 mt-2">Satisfied Clients</p>
+                </div>
+
+                <div class="pt-6 lg:pt-0 lg:px-6 text-center lg:text-left reveal">
+                    <div class="text-5xl sm:text-6xl font-black text-amberGold tracking-tight">
+                        <span class="counter" data-target="25">0</span>+
+                    </div>
+                    <p class="text-xs font-extrabold tracking-[0.2em] uppercase text-gray-400 mt-2">Creative Crew</p>
+                </div>
+
+                <div class="pt-6 lg:pt-0 lg:px-6 text-center lg:text-left reveal">
+                    <div class="text-5xl sm:text-6xl font-black text-amberGold tracking-tight">
+                        24/7
+                    </div>
+                    <p class="text-xs font-extrabold tracking-[0.2em] uppercase text-gray-400 mt-2">Production Support</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="text-amberGold text-xs font-extrabold tracking-[0.25em] uppercase">SELECTED CLIENTS</span>
+                <h2 class="text-4xl sm:text-6xl font-black text-white mt-2">OUR CLIENT.</h2>
+            </div>
+
+            <!-- Client logos: five on the first row and four on the second at desktop widths -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/schneider-electric.png" alt="Schneider Electric" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/sampoerna.png" alt="Sampoerna" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/kai.png" alt="KAI" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/my-republik.png" alt="My Republik" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/motul.png" alt="Motul" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/mandiri.png" alt="Mandiri" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/ella-skincare.png" alt="Ella Skincare" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/santan-sasa.jpg" alt="Santan Sasa" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+                <div class="flex min-h-36 items-center justify-center rounded-2xl border border-white/10 p-5 reveal">
+                    <img src="assets/kahf.png" alt="Kahf" loading="lazy" class="max-h-28 w-full object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leaders" class="py-24 bg-neutral-950/90 border-t border-darkBorder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-amberGold text-xs font-extrabold tracking-[0.25em] uppercase">THE PEOPLE BEHIND AMBER</span>
+                <h2 class="text-4xl sm:text-6xl font-black text-white mt-2">THE LEADERS.</h2>
+                <p class="text-gray-400 text-sm mt-4">
+                    Kombinasi antara dedikasi, kepemimpinan operasional, serta presisi teknikal yang mendorong Amber Event Production maju.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Leader 1 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="h-80 bg-neutral-900 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" 
+                             alt="Ahmad FS" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-amberGold text-[10px] font-extrabold tracking-widest uppercase">FOUNDER</span>
+                        <h3 class="text-2xl font-bold text-white mt-1">AHMAD FS</h3>
+                        <p class="text-gray-400 text-sm italic mt-3 border-l-2 border-amberGold pl-3">
+                            "Good things take time."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Leader 2 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="h-80 bg-neutral-900 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
+                             alt="Saifudin Soleh" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-amberGold text-[10px] font-extrabold tracking-widest uppercase">OPERATIONS DIRECTOR</span>
+                        <h3 class="text-2xl font-bold text-white mt-1">SAIFUDIN SOLEH</h3>
+                        <p class="text-gray-400 text-sm italic mt-3 border-l-2 border-amberGold pl-3">
+                            "Everything will be okay."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Leader 3 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group hover:border-amberGold/50 transition-all duration-300 reveal">
+                    <div class="h-80 bg-neutral-900 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop" 
+                             alt="Reiza J. Putra" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-amberGold text-[10px] font-extrabold tracking-widest uppercase">TECHNICAL DIRECTOR</span>
+                        <h3 class="text-2xl font-bold text-white mt-1">REIZA J. PUTRA</h3>
+                        <p class="text-gray-400 text-sm italic mt-3 border-l-2 border-amberGold pl-3">
+                            "Eksekusi cepat, tepat, dan presisi teknis — satset watwet."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="works" class="py-24 sm:py-28 relative border-t border-darkBorder overflow-hidden">
+        <div class="absolute top-24 -right-28 w-80 h-80 rounded-full bg-amberGold/10 blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-14 sm:mb-20 reveal">
+                <span class="text-amberGold text-xs font-extrabold tracking-[0.25em] uppercase">AMBER IN ACTION · 2026</span>
+                <h2 class="text-4xl sm:text-6xl font-black text-gray-900 mt-3 tracking-tight">
+                    OUR SELECTED <span class="text-amberGold">WORKS.</span>
+                </h2>
+                <p class="text-gray-600 text-sm sm:text-base mt-5 max-w-2xl mx-auto leading-relaxed">
+                    Cerita di balik kolaborasi, kreativitas, dan pengalaman yang kami hadirkan bersama klien.
+                </p>
+            </div>
+
+            <div class="space-y-12 sm:space-y-16">
+                <!-- Kahf Ramadan Gathering -->
+                <article class="work-case grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center rounded-3xl border border-black/10 bg-white p-5 sm:p-8 lg:p-10 shadow-[0_18px_60px_rgba(15,23,42,0.06)] reveal">
+                    <div class="work-copy lg:py-4">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="w-10 h-px bg-amberGold"></span>
+                            <span class="text-amberGold text-xs font-extrabold tracking-[0.2em] uppercase">Brand Activation · Ramadan</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 leading-tight">Kahf <span class="text-amberGold">Ramadan Gathering</span></h3>
+                        <p class="text-gray-600 text-sm sm:text-base leading-relaxed mt-5">
+                            Dengan mengundang individu dari beragam latar belakang, Kahf menghadirkan kampanye yang menarik dan inovatif. Acara ini menjadi wadah pertemuan bagi influencer dan media, sekaligus menyajikan tausiyah yang ringan namun berbobot serta sesi refleksi diri untuk menyambut bulan Ramadan.
+                        </p>
+                        <div class="mt-7 flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">EVENT PRODUCTION</span>
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">BRAND ACTIVATION</span>
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">EVENT SUPPORT</span>
+                        </div>
+                    </div>
+                    <div class="work-gallery grid grid-cols-3 gap-3 sm:gap-4">
+                        <img class="work-main col-span-3 w-full object-cover rounded-2xl" src="assets/kahf-main.jpg" alt="Kahf Ramadan Gathering stage and event backdrop" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/kahf-team.jpg" alt="Guests attending Kahf Ramadan Gathering" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/kahf-meeting.jpg" alt="Kahf event discussion" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/kahf-event.jpg" alt="Kahf event audience and stage" loading="lazy">
+                    </div>
+                </article>
+
+                <!-- Sampoerna Prima Festival -->
+                <article class="work-case grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center rounded-3xl border border-black/10 bg-white p-5 sm:p-8 lg:p-10 shadow-[0_18px_60px_rgba(15,23,42,0.06)] reveal">
+                    <div class="work-copy lg:py-4 lg:order-2">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="w-10 h-px bg-amberGold"></span>
+                            <span class="text-amberGold text-xs font-extrabold tracking-[0.2em] uppercase">Brand Activation · 2026</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 leading-tight">Sampoerna Prima <span class="text-amberGold">Festival</span></h3>
+                        <p class="text-gray-600 text-sm sm:text-base leading-relaxed mt-5">
+                            Maksimalkan penetrasi pasar dengan dukungan SPG dan SPB berpengalaman. Kami memahami kebutuhan pemasaran lapangan yang unik dan patuh aturan, lalu menghadirkan tim untuk mendukung sampling serta interaksi langsung di area retail dan event.
+                        </p>
+                        <div class="mt-7 flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">BRAND ACTIVATION</span>
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">FIELD TEAM</span>
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">EVENT SUPPORT</span>
+                        </div>
+                    </div>
+                    <div class="work-gallery grid grid-cols-3 gap-3 sm:gap-4 lg:order-1">
+                        <img class="work-main col-span-3 w-full object-cover rounded-2xl" src="assets/sampoerna-main.jpg" alt="Sampoerna Prima Festival event crew" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/sampoerna-booth.jpg" alt="Sampoerna activation booth" loading="lazy">
+                        <img class="col-span-2 w-full object-cover rounded-xl" src="assets/sampoerna-team.jpg" alt="Sampoerna Prima Festival team" loading="lazy">
+                    </div>
+                </article>
+
+                <!-- Schneider Electric -->
+                <article class="work-case grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center rounded-3xl border border-black/10 bg-white p-5 sm:p-8 lg:p-10 shadow-[0_18px_60px_rgba(15,23,42,0.06)] reveal">
+                    <div class="work-copy lg:py-4">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="w-10 h-px bg-amberGold"></span>
+                            <span class="text-amberGold text-xs font-extrabold tracking-[0.2em] uppercase">Corporate · Sales Team</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 leading-tight">Schneider <span class="text-amberGold">Electric</span></h3>
+                        <p class="text-gray-600 text-sm sm:text-base leading-relaxed mt-5">
+                            Kami menyediakan solusi ujung-ke-ujung untuk kebutuhan Sales Promotion Girl (SPG), Sales Promotion Boy (SPB), serta pembuatan dan manajemen booth pameran. Kami memastikan representasi merek tampil prima, komunikatif, dan mampu mendukung pencapaian target di setiap event.
+                        </p>
+                        <div class="mt-7 flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">STAFFING</span>
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">BOOTH MANAGEMENT</span>
+                            <span class="px-3 py-1.5 rounded-full bg-amberGold/10 text-amberDark text-[11px] font-bold tracking-wide">CORPORATE EVENT</span>
+                        </div>
+                    </div>
+                    <div class="work-gallery grid grid-cols-3 gap-3 sm:gap-4">
+                        <img class="work-main col-span-3 w-full object-cover rounded-2xl" src="assets/schneider-main.jpg" alt="Schneider Electric event team at exhibition booth" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/schneider-team.jpg" alt="Schneider Electric team at the booth" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/schneider-booth.jpg" alt="Schneider Electric team portrait" loading="lazy">
+                        <img class="w-full object-cover rounded-xl" src="assets/schneider-team-2.jpg" alt="Schneider Electric event staff" loading="lazy">
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-28 relative overflow-hidden text-center bg-radial from-amberGold/20 via-darkBg to-darkBg">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
+            <span class="text-amberGold text-xs font-extrabold tracking-[0.3em] uppercase reveal">START A PROJECT</span>
+            
+            <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-none reveal">
+                LET'S BUILD SOMETHING <br>
+                <span class="text-amberGold">UNFORGETTABLE.</span>
+            </h2>
+
+            <p class="text-gray-400 max-w-xl mx-auto text-base reveal">
+                Siap mewujudkan konsep acara spektakuler Anda bersama tim profesional <span class="company-name">PT AMBER EVENT PRODUCTION</span>?
+            </p>
+
+            <div class="pt-4 reveal">
+                <button onclick="openModal()" class="inline-flex items-center gap-3 px-10 py-5 bg-amberGold hover:bg-amberLight text-black font-extrabold text-sm tracking-widest uppercase rounded-full transition-all duration-300 transform hover:scale-105 shadow-[0_0_30px_rgba(242,169,0,0.4)]">
+                    <span>Let's Talk</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-darkBorder py-16 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-amberGold/20 flex items-center justify-center text-amberGold font-extrabold">A</div>
+                        <span class="font-black text-2xl text-white tracking-wider">AMBER<span class="text-amberGold">.</span></span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        <span class="company-name">PT AMBER EVENT PRODUCTION</span><br>
+                        Professional Event & Staging Production Agency Indonesia.
+                    </p>
+                </div>
+
+                <!-- Col 2: Contact Info -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-extrabold tracking-widest text-amberGold uppercase">Contact</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-amberGold"></i>
+                            <a href="mailto:amber.eventroduction@gmail.com" class="hover:text-amberGold transition-colors">amber.eventroduction@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-amberGold"></i>
+                            <a href="tel:+628568088959" class="hover:text-amberGold transition-colors">+62 856 8088 959</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Address -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-extrabold tracking-widest text-amberGold uppercase">Location</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-amberGold mt-0.5"></i>
+                        <span>Malang, East Java, Indonesia</span>
+                    </p>
+                </div>
+
+                <!-- Col 4: Socials -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-extrabold tracking-widest text-amberGold uppercase">Follow Us</h4>
+                    <div class="flex gap-3">
+                        <a href="https://www.instagram.com/amber.event.pro" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white hover:text-amberGold hover:border-amberGold transition-all">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white hover:text-amberGold hover:border-amberGold transition-all">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white hover:text-amberGold hover:border-amberGold transition-all">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-500 gap-4">
+                <p>© 2026 <span class="company-name">PT AMBER EVENT PRODUCTION</span>. All rights reserved.</p>
+                <p>Designed with Precision & Passion</p>
+            </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/628568088959?text=Halo%20AMBER%20Event%20Production" class="button2" aria-label="Chat via WhatsApp" target="_blank" rel="noopener">
-        WhatsApp
-        <svg viewBox="0 0 48 48" y="0px" x="0px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <path d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z" fill="#fff"></path>
-            <path d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z" fill="#fff"></path>
-            <path d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z" fill="#cfd8dc"></path>
-            <path d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z" fill="#40c351"></path>
-            <path clip-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" fill-rule="evenodd" fill="#fff"></path>
-        </svg>
-    </a>
+    <div id="contactModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-panel w-full max-w-lg rounded-2xl p-8 border border-white/20 relative shadow-2xl transform scale-95 transition-all duration-300" id="modalContainer">
+            
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-amberGold text-xs font-extrabold tracking-widest uppercase">QUICK INQUIRY</span>
+                <h3 class="text-2xl font-black text-white mt-1">START YOUR EVENT JOURNEY</h3>
+            </div>
+
+            <!-- Form -->
+            <form id="inquiryForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-1">Your Name</label>
+                    <input type="text" required placeholder="Nama Lengkap" class="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-amberGold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-1">Email Address</label>
+                    <input type="email" required placeholder="email@perusahaan.com" class="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-amberGold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-1">Event Category</label>
+                    <select class="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-amberGold">
+                        <option value="corporate">Corporate Event</option>
+                        <option value="concert">Concert & Festival</option>
+                        <option value="activation">Brand Activation</option>
+                        <option value="exhibition">Exhibition</option>
+                        <option value="other">Lainnya / Consultation</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-1">Message / Detail Event</label>
+                    <textarea rows="3" required placeholder="Ceritakan kebutuhan acara Anda..." class="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-amberGold"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-amberGold text-black font-extrabold text-xs tracking-widest uppercase rounded-lg hover:bg-amberLight transition-colors">
+                    Send Inquiry
+                </button>
+            </form>
+
+            <div id="modalNotification" class="hidden mt-4 p-4 rounded-lg bg-green-900/50 border border-green-500 text-green-200 text-xs text-center font-semibold">
+                Terima kasih! Pesan Anda telah terkirim. Tim Amber Event Production akan segera menghubungi Anda.
+            </div>
+
+        </div>
+    </div>
 
     <script>
-        // ===== HAMBURGER MENU =====
-        const hamburger = document.querySelector('.hamburger');
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            const spans = this.querySelectorAll('span');
-            if (this.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        // Mobile Navigation Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars';
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                menuIcon.className = 'fa-solid fa-xmark';
             }
         });
 
-        // ===== ROLLING TEXT ANIMATION =====
-        (function () {
-            const text = document.getElementById("amberRollingText");
-            if (!text || text.dataset.initialized) return;
-            text.dataset.initialized = "true";
-            const words = [
-                "Branding",
-                "Events Organizer",
-                "Events Planner",
-                "Exhibitions",
-                "Meetings Incentives, Conferences"
-            ];
-            const reducedMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
-            let index = 0;
-            let timer;
-            function showNext() {
-                text.classList.add("is-exiting");
-                setTimeout(function () {
-                    index = (index + 1) % words.length;
-                    text.innerHTML =
-                        words[index] + '<span class="amber-neon-dot">.</span>';
-                    text.classList.remove("is-exiting");
-                    text.classList.add("is-entering");
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            text.classList.remove("is-entering");
-                        });
-                    });
-                }, reducedMotion ? 0 : 400);
-            }
-            if (!reducedMotion) {
-                timer = window.setInterval(showNext, 2000);
-            }
-        })();
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            menuIcon.className = 'fa-solid fa-bars';
+        }
 
-        // ===== SCROLL REVEAL =====
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Scroll Reveal Animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.project-card, .footer-link-group, .location-item, .client-logo').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Counter Animation
+        let countersAnimated = false;
+        function animateCounters() {
+            const counterSection = document.querySelector('.counter');
+            if (!counterSection) return;
+
+            const sectionTop = counterSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (sectionTop < windowHeight && !countersAnimated) {
+                countersAnimated = true;
+                const counters = document.querySelectorAll('.counter');
+                
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 40;
+
+                    const updateCount = () => {
+                        count += speed;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 30);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        }
+
+        window.addEventListener('scroll', animateCounters);
+
+        // Portfolio Category Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update button active states
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-amberGold', 'text-black', 'active');
+                    b.classList.add('glass-panel', 'text-gray-300', 'border', 'border-white/10');
+                });
+                btn.classList.add('bg-amberGold', 'text-black', 'active');
+                btn.classList.remove('glass-panel', 'text-gray-300', 'border', 'border-white/10');
+
+                const filter = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                        setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.95)';
+                        setTimeout(() => { item.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+
+        // Rolling hero headline, adapted from the supplied Amber rolling-logo animation
+        (function () {
+            const word = document.getElementById('heroRollingWord');
+            const windowEl = document.getElementById('heroRollingWindow');
+            if (!word || !windowEl) return;
+
+            const words = ['THE STAGE', 'THE SHOW', 'YOUR EVENT', 'THE MOMENT'];
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion) return;
+
+            let index = 0;
+            window.setInterval(() => {
+                word.classList.add('is-exiting');
+                window.setTimeout(() => {
+                    index = (index + 1) % words.length;
+                    word.textContent = words[index];
+                    windowEl.setAttribute('aria-label', words[index]);
+                    word.classList.remove('is-exiting');
+                    word.classList.add('is-entering');
+                    window.requestAnimationFrame(() => {
+                        window.requestAnimationFrame(() => word.classList.remove('is-entering'));
+                    });
+                }, 400);
+            }, 2400);
+        })();
+
+        // Modal Form Handling
+        const modal = document.getElementById('contactModal');
+        const modalContainer = document.getElementById('modalContainer');
+
+        function openModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+            document.getElementById('modalNotification').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const notification = document.getElementById('modalNotification');
+            notification.classList.remove('hidden');
+            document.getElementById('inquiryForm').reset();
+
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
+        }
+
+        // Close Modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
         });
     </script>
-
 </body>
 </html>
