@@ -1,0 +1,6 @@
+{
+  "name": "Amber Event Production",
+  "description": "PT Amber Event Production website featuring stage lighting and orbiting services with curved text and neon blinking effects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
