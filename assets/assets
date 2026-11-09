@@ -1,4 +1,0 @@
-mkdir -p assets
-git mv *.png *.jpg assets/
-git commit -m "Move uploaded images into assets directory"
-git push
