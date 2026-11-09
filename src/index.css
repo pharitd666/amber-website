@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #FFB300;
+    --color-primary-hover: #FFA000;
+    --color-primary-rgb: 255, 179, 0;
+    --color-primary-contrast: #0F0E0D;
+    --color-bg: #F7F5F0;
+    --color-surface: #FFFFFF;
+    --color-text: #18181B;
+    --color-muted: #71717A;
+    --radius: 1.5rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Paper texture backdrop */
+.paper-texture {
+  background-color: #F8F6F2;
+  background-image: radial-gradient(rgba(24, 24, 27, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Hero dark stage section */
+.hero-dark {
+  background: radial-gradient(circle at 75% 30%, rgba(255, 179, 0, 0.12) 0%, rgba(18, 17, 16, 0.98) 55%, #0B0A09 100%);
+  color: #FFFFFF;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Neon glow texts */
+.neon-text {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+               0 0 20px rgba(255, 179, 0, 0.8),
+               0 0 40px rgba(255, 179, 0, 0.5);
+}
+
+.neon-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+  filter: drop-shadow(0 0 8px rgba(255, 179, 0, 0.6));
+}
+
+/* Orbit continuous rotation */
+@keyframes orbit-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-ccw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-orbit-1 {
+  animation: orbit-cw 45s linear infinite;
+  transform-origin: 300px 300px;
+}
+
+.animate-orbit-2 {
+  animation: orbit-ccw 38s linear infinite;
+  transform-origin: 300px 300px;
+}
+
+.animate-orbit-3 {
+  animation: orbit-cw 32s linear infinite;
+  transform-origin: 300px 300px;
+}
+
+.animate-orbit-4 {
+  animation: orbit-ccw 26s linear infinite;
+  transform-origin: 300px 300px;
+}
+
+/* Blinking (berkedip) animations */
+/* 1. Realistic Neon Flicker */
+@keyframes neon-flicker-a {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 179, 0, 0.9)) drop-shadow(0 0 18px rgba(255, 179, 0, 0.5));
+  }
+  3% { opacity: 0.2; filter: drop-shadow(0 0 1px rgba(255, 179, 0, 0.2)); }
+  6% { opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 179, 0, 1)); }
+  7% { opacity: 0.3; filter: drop-shadow(0 0 1px rgba(255, 179, 0, 0.2)); }
+  8% { opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 179, 0, 0.9)); }
+  45% { opacity: 1; }
+  46% { opacity: 0.15; filter: none; }
+  47% { opacity: 0.9; }
+  48% { opacity: 0.2; }
+  50% { opacity: 1; filter: drop-shadow(0 0 12px rgba(255, 179, 0, 0.9)); }
+  72% { opacity: 0.35; }
+  73% { opacity: 1; }
+  88% { opacity: 0.2; }
+  90% { opacity: 1; }
+}
+
+@keyframes neon-flicker-b {
+  0%, 100% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 7px rgba(255, 220, 100, 0.9)) drop-shadow(0 0 15px rgba(255, 179, 0, 0.4));
+  }
+  12% { opacity: 0.15; filter: none; }
+  14% { opacity: 1; filter: drop-shadow(0 0 9px rgba(255, 220, 100, 1)); }
+  15% { opacity: 0.4; }
+  16% { opacity: 1; }
+  58% { opacity: 0.25; filter: none; }
+  60% { opacity: 0.95; filter: drop-shadow(0 0 7px rgba(255, 220, 100, 0.9)); }
+  81% { opacity: 0.1; }
+  83% { opacity: 1; }
+}
+
+@keyframes neon-flicker-c {
+  0%, 100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 14px rgba(255, 179, 0, 0.5));
+  }
+  24% { opacity: 0.2; }
+  25% { opacity: 1; }
+  35% { opacity: 0.1; filter: none; }
+  36% { opacity: 0.8; }
+  37% { opacity: 0.2; }
+  39% { opacity: 1; }
+  68% { opacity: 0.15; }
+  70% { opacity: 0.95; }
+}
+
+@keyframes neon-flicker-d {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 9px rgba(255, 179, 0, 1)) drop-shadow(0 0 20px rgba(255, 140, 0, 0.6));
+  }
+  5% { opacity: 0.2; }
+  7% { opacity: 1; }
+  41% { opacity: 0.15; filter: none; }
+  43% { opacity: 1; }
+  63% { opacity: 0.3; }
+  65% { opacity: 1; }
+  94% { opacity: 0.1; }
+  96% { opacity: 1; }
+}
+
+/* Staged pulse blinking (kedipan panggung berkala) */
+@keyframes stage-blink-sync {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(255, 179, 0, 0.95));
+  }
+  40% {
+    opacity: 0.2;
+    filter: drop-shadow(0 0 1px rgba(255, 179, 0, 0.1));
+  }
+  60% {
+    opacity: 1;
+    filter: drop-shadow(0 0 14px rgba(255, 179, 0, 1));
+  }
+  80% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 2px rgba(255, 179, 0, 0.2));
+  }
+}
+
+/* Strobe blinking */
+@keyframes stage-strobe {
+  0%, 49.9% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(255, 179, 0, 1));
+  }
+  50%, 100% {
+    opacity: 0.12;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+}
+
+.blink-neon-1 {
+  animation: neon-flicker-a 3.2s infinite ease-in-out;
+}
+
+.blink-neon-2 {
+  animation: neon-flicker-b 2.7s infinite ease-in-out;
+}
+
+.blink-neon-3 {
+  animation: neon-flicker-c 3.9s infinite ease-in-out;
+}
+
+.blink-neon-4 {
+  animation: neon-flicker-d 2.3s infinite ease-in-out;
+}
+
+.blink-stage-sync {
+  animation: stage-blink-sync 1.8s infinite ease-in-out;
+}
+
+.blink-strobe {
+  animation: stage-strobe 0.7s infinite steps(1);
+}
+
+/* Dashed thread animation */
+@keyframes thread-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.animate-thread-dash {
+  animation: thread-flow 12s linear infinite;
+}
+
+/* Subtle pulse for glow core */
+@keyframes core-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 70px rgba(255, 179, 0, 0.35);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 110px rgba(255, 179, 0, 0.55);
+  }
+}
+
+.animate-core-pulse {
+  animation: core-pulse 4s ease-in-out infinite;
+}
