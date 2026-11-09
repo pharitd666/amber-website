@@ -1,0 +1,6 @@
+git init
+git add .
+git commit -m "Update Amber Event Production website"
+git branch -M main
+git remote add origin https://github.com/pharitd666/amber-website.git
+git push -u origin main --force
